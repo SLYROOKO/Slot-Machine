@@ -20,7 +20,7 @@ const Roller = forwardRef((props, reference) => {
     Animated.timing(scrollPosition, {
       toValue: -5000,
       duration: 1750,
-      //+props.index *250, basically spin for longer the further to the right the reel is
+      //+props.index *250,// spin for longer the further to the right the reel is
       useNativeDriver: true,
       easing: Easing.inOut(Easing.exp),
     }).start(() => {
