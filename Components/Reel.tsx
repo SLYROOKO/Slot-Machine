@@ -1,22 +1,20 @@
 import React, {useImperativeHandle} from 'react';
 import {useState, forwardRef} from 'react';
 import {StyleSheet, View, Animated, Easing, Text} from 'react-native';
+import Tile from './Tile';
 
-const Roller = forwardRef((props, reference) => {
+const Reel = forwardRef((props, reference) => {
   let scrollPosition = new Animated.Value(0);
-  const [tileIndex, setTileIndex] = useState(0);
-  //fill reelTiles with 200 random capital letters
-  const reelTiles = [...Array(1000)].map(() => {
-    return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+  const reelTiles = [...Array(14)].map(() => {
+    return Math.floor(Math.random() * 14);
   });
 
   useImperativeHandle(reference, () => ({
     handleReelSpin,
   }));
-  const handleReelSpin = () => {
-    //random number between .9 and 1
 
-    console.log('Spin');
+  const handleReelSpin = () => {
+    console.log('Spinning');
     Animated.timing(scrollPosition, {
       toValue: -5000,
       duration: 1750,
@@ -30,15 +28,8 @@ const Roller = forwardRef((props, reference) => {
 
   const styles = StyleSheet.create({
     reel: {
-      // width: 100,
-      // height: 100,
-      // borderRadius: 50,
       backgroundColor: 'white',
       overflow: 'hidden',
-    },
-    reelImage: {
-      width: 100,
-      height: 100,
     },
   });
 
@@ -46,11 +37,11 @@ const Roller = forwardRef((props, reference) => {
     <View style={styles.reel}>
       <Animated.View style={{transform: [{translateY: scrollPosition}]}}>
         {reelTiles.map((tile, index) => {
-          return <Text> {tile} </Text>;
+          return <Tile tileType={tile} index={index} width={"change"} height={"change"} key={index}/>;
         })}
       </Animated.View>
     </View>
   );
 });
 
-export default Roller;
+export default Reel;

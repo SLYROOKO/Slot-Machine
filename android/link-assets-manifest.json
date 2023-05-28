@@ -1,0 +1,25 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/ARCADECLASSIC.TTF",
+      "sha1": "dc62cf64a42e759a47f3149caf39184b51374e4a"
+    },
+    {
+      "path": "assets/fonts/digital-7 (italic).ttf",
+      "sha1": "ba2f68370fa15d2b855d2bf6851d21b13b70dc87"
+    },
+    {
+      "path": "assets/fonts/digital-7 (mono italic).ttf",
+      "sha1": "b44189e1acc6432ffff0a905711354067d5d5f46"
+    },
+    {
+      "path": "assets/fonts/digital-7 (mono).ttf",
+      "sha1": "dabe381cb194d25d64f7f32d8925c1509b95ec08"
+    },
+    {
+      "path": "assets/fonts/digital-7.ttf",
+      "sha1": "7e1cf55ecbeaaa82465624ffb32b54e85453325c"
+    }
+  ]
+}
