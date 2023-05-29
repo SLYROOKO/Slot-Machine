@@ -36,7 +36,7 @@ const Reel = forwardRef((props, reference) => {
 
     Animated.timing(scrollPosition, {
       toValue: -(result * Constants.windowHeight * 0.85) / Constants.numRows,
-      duration: 7000 + props.reelIndex * Constants.reelSpinDurationDelay, // spin for longer the further to the right the reel is,
+      duration: Constants.reelSpinMinDuration + props.reelIndex * Constants.reelSpinDurationDelay, // spin for longer the further to the right the reel is,
       useNativeDriver: true,
       easing: Easing.inOut(Easing.exp),
     }).start(() => {

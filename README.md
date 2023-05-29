@@ -12,17 +12,17 @@
 
 ## Todo
 
-1. Disable Play Button when no credits or when slots are spinning
-2. Right Bar
+1. Menu Bar
    1. Info (Payout Table)
    2. Credits(Current Credits)
+      1. Disable Play Button when no credits
    3. Lines
    4. Free Spins Remaining
    5. Title Logo
    6. Score
    7. Settings
-3. Add Credit Buy Screen
-4. Payout Calculation
-5. Add Info Screen
-6. Sound Effects
-7. Add Settings Screen
+2. Add Credit Buy Screen
+3. Payout Calculation
+4. Add Info Screen (Payout Table)
+5. Sound Effects
+6. Add Settings Screen

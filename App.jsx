@@ -1,17 +1,10 @@
-import {
-  SafeAreaView,
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
 import Reel from './Components/Reel';
 import Constants from './Constants';
-import { useRef, useState } from 'react';
+import PlayButton from './Components/PlayButton';
+import { useRef } from 'react';
 
 function App() {
-  const [slotInPlay] = useState(false);
-
   const reelController1 = useRef();
   const reelController2 = useRef();
   const reelController3 = useRef();
@@ -19,8 +12,6 @@ function App() {
   const reelController5 = useRef();
 
   const handleSpin = () => {
-    slotInPlay[0] = true;
-    console.log('slotInPlay', slotInPlay);
     reelController1.current.handleReelSpin();
     reelController2.current.handleReelSpin();
     reelController3.current.handleReelSpin();
@@ -47,31 +38,14 @@ function App() {
           <Text style={styles.infoBox}>Credits</Text>
           <Text style={styles.infoBox}>Lines</Text>
           <Text style={styles.infoBox}>Free Spins</Text>
-
-          <TouchableOpacity
-            style={{
-              height: Constants.windowHeight * 0.1,
-              backgroundColor: slotInPlay.current ?'red':'green',
-              flex: 1,
-              marginHorizontal: Constants.windowWidth * 0.01,
-              marginVertical: Constants.windowHeight * 0.01,
-            }}
-            disabled={slotInPlay.current}
-            onPress={() => handleSpin()}>
-            <Text style={{
-              fontSize: Constants.windowHeight * 0.06,
-              color: 'white',
-              // fontFamily: 'ARCADECLASSIC',
-              textAlignVertical: 'center',
-              textAlign: 'center'}}>
-                {slotInPlay.current?"Spinning...":"PLAY"}
-                </Text>
-          </TouchableOpacity>
+          <View style={styles.PlayButton}>
+          <PlayButton action={handleSpin}/>
+          </View>
         </View>
       </View>
     </SafeAreaView>
   );
-}
+  }
 
 const styles = StyleSheet.create({
   container: {
@@ -100,9 +74,14 @@ const styles = StyleSheet.create({
     // fontFamily: 'ARCADECLASSIC',
     textAlignVertical: 'center',
     height: Constants.windowHeight * 0.1,
-    flex: 1,
     marginHorizontal: Constants.windowWidth * 0.01,
-  }
+    flex:1
+  },
+  PlayButton: {
+    marginHorizontal: Constants.windowWidth * 0.01,
+    marginVertical: Constants.windowHeight * 0.01,
+    flex:1
+  },
 });
 
 
