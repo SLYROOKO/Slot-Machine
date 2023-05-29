@@ -1,9 +1,7 @@
-import React from 'react';
-import {View, Image} from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 import TileImages from '../Images';
-import Constants from '../Constants';
 
-const Tile = (props: any) => {
+const Tile = (props) => {
   const getTileImage = () => {
     switch (props.tileType) {
       case 1:
@@ -25,19 +23,29 @@ const Tile = (props: any) => {
       case 9:
         return TileImages.Widow;
       case 10:
-        return TileImages.LootBox;
-      case 11:
         return TileImages.Pachimari;
-      case 12:
+      case 11:
         return TileImages.WreckingBall;
       default:
-        return TileImages.Wild;
+        return TileImages.LootBox;
+        
     }
   };
+  
+  const styles = StyleSheet.create({
+    tile: {
+      backgroundColor: 'black',
+    },
+    image: {
+      width: props.width,
+      height: props.height,
+      resizeMode: 'stretch',
+    },
+  });
 
   return (
-    <View>
-      <Image source={getTileImage()}></Image>
+    <View style={styles.tile}>
+      <Image style={styles.image} source={getTileImage()}></Image>
     </View>
   );
 };

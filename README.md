@@ -12,19 +12,17 @@
 
 ## Todo
 
-1. Adjust container size for the reel container
-2. Top Bar
-   1. Title Logo
-   2. Score
-   3. Settings
-3. Bottom Bar
-   1. Info
+1. Disable Play Button when no credits or when slots are spinning
+2. Right Bar
+   1. Info (Payout Table)
    2. Credits(Current Credits)
    3. Lines
    4. Free Spins Remaining
-4. Complete Spinning function.
-5. Add Credit Buy Screen
-6. Payout Calculation
-7. Add Info Screen
-8. Sound Effects
-9. Add Settings Screen
+   5. Title Logo
+   6. Score
+   7. Settings
+3. Add Credit Buy Screen
+4. Payout Calculation
+5. Add Info Screen
+6. Sound Effects
+7. Add Settings Screen
