@@ -1,7 +1,7 @@
-import {StyleSheet, View, Animated, Easing} from 'react-native';
+import { StyleSheet, View, Animated, Easing } from 'react-native';
 import Tile from './Tile';
 import Constants from '../Constants';
-import {forwardRef} from 'react';
+import { forwardRef, useImperativeHandle } from 'react';
 
 const Reel = forwardRef((props, reference) => {
   let scrollPosition = new Animated.Value(0);
@@ -21,12 +21,11 @@ const Reel = forwardRef((props, reference) => {
     reelTiles = reelTiles.concat(initialReelTiles);
   }
 
-  // useImperativeHandle(reference, () => ({
-  //   handleReelSpin,
-  // }));
+  useImperativeHandle(reference, () => ({
+    handleReelSpin,
+  }));
 
-
-  const handleReelSpin = () => {
+  const  handleReelSpin = () => {
     const result =
       Math.floor(
         Math.random() *
@@ -37,27 +36,20 @@ const Reel = forwardRef((props, reference) => {
 
     Animated.timing(scrollPosition, {
       toValue: -(result * Constants.windowHeight * 0.85) / Constants.numRows,
-      duration: 7000 + props.index * Constants.reelSpinDurationDelay, // spin for longer the further to the right the reel is,
+      duration: 7000 + props.reelIndex * Constants.reelSpinDurationDelay, // spin for longer the further to the right the reel is,
       useNativeDriver: true,
       easing: Easing.inOut(Easing.exp),
     }).start(() => {
+      // using a trick to reset the reel to the first set of tiles
       scrollPosition.setValue(
         -((result % initialReelTiles.length) * Constants.windowHeight * 0.85) /
           Constants.numRows,
       );
       // stop the music
       // calculate the payout
+      return true;
     });
   };
-
-  handleReelSpin(); //delete this later
-
-  const styles = StyleSheet.create({
-    reel: {
-      overflow: 'hidden',
-      alignItems: 'center',
-    },
-  });
 
   return (
     <View style={styles.reel}>
@@ -76,6 +68,13 @@ const Reel = forwardRef((props, reference) => {
       </Animated.View>
     </View>
   );
+});
+
+const styles = StyleSheet.create({
+  reel: {
+    overflow: 'hidden',
+    alignItems: 'center',
+  },
 });
 
 export default Reel;

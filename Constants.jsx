@@ -7,9 +7,9 @@ const Constants = {
   numColumns: 5,
   backgroundColor: 'black',
   wildCardMutationChance: 0.1,
-  reelRepeatCount: 50,
+  reelRepeatCount: 40,
   minimumSpinCycleCount: 3,
-  reelSpinDurationDelay: 1300
+  reelSpinDurationDelay: 1000
 };
 
 export default Constants;

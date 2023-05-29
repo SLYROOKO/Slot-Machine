@@ -1,7 +1,7 @@
-import {View, Image, StyleSheet} from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 import TileImages from '../Images';
 
-const Tile = (props: any) => {
+const Tile = (props) => {
   const getTileImage = () => {
     switch (props.tileType) {
       case 1:
@@ -31,6 +31,7 @@ const Tile = (props: any) => {
         
     }
   };
+  
   const styles = StyleSheet.create({
     tile: {
       backgroundColor: 'black',
