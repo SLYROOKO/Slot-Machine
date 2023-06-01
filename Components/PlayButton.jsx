@@ -26,9 +26,9 @@ const PlayButton = (props) => {
     return(
     buttonDisable?
         <TouchableOpacity
-        style={  {backgroundColor:'red'} }>
+        style={  {backgroundColor:'gray'} }>
         <Text style={styles.PlayButtonText}>
-            SPINNING
+            SPIN
             </Text>
         </TouchableOpacity>
     :
@@ -37,7 +37,7 @@ const PlayButton = (props) => {
         disabled={buttonDisable}
         onPress={() => {handleButtonPress()}}>
         <Text style={styles.PlayButtonText}>
-            PLAY
+        SPIN
         </Text>
     </TouchableOpacity>)
 };
