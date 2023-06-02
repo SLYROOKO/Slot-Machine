@@ -12,17 +12,23 @@
 
 ## Todo
 
-1. Menu Bar
-   1. Info (Payout Table)
-   2. Credits(Current Credits)
-      1. Disable Play Button when no credits
-   3. Lines
-   4. Free Spins Remaining
-   5. Title Logo
-   6. Score
-   7. Settings
-2. Add Credit Buy Screen
-3. Payout Calculation
-4. Add Info Screen (Payout Table)
-5. Sound Effects
-6. Add Settings Screen
+1. Highlight Winning Lines
+2. Menu Bar
+   1. Round Edges
+3. Settings button top left
+   1. Add Settings Screen
+4. Info (Payout Table) button top right
+   1. Add Info Screen (Payout Table)
+5. Add Credit Buy Screen
+   1. click the credit button to open screen
+6. Sound Effects
+   1. Find new effect for real stop
+   2. if win with a character, play the character sound
+7. Auto Spin
+   1. Add Auto Spin button
+   2. Turn into Stop button during auto spin
+8. Free Spins
+   1. Change the background color during free spins
+   2. Auto Spin during free spins
+   3. 3x multiplier during free spins
+9. Add tests for payline logic
