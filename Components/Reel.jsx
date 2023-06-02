@@ -1,7 +1,9 @@
 import { StyleSheet, View, Animated, Easing } from 'react-native';
 import Tile from './Tile';
 import Constants from '../Constants';
-import { forwardRef, useImperativeHandle } from 'react';
+import { forwardRef, useImperativeHandle, useEffect } from 'react';
+import Sound from 'react-native-sound';
+import ReelClick from '../assets/sounds/ReelClick.mp3';
 
 const Reel = forwardRef((props, reference) => {
   let scrollPosition = new Animated.Value(0);
@@ -21,8 +23,23 @@ const Reel = forwardRef((props, reference) => {
     reelTiles = reelTiles.concat(initialReelTiles);
   }
 
+  Sound.setCategory('Playback');
+  var ReelClickSound = new Sound(ReelClick, (error) => {
+      if (error) {
+          console.log('failed to load the sound', error);
+          return;
+      }
+  });
+
+  useEffect(() => {
+    ReelClickSound.setVolume(100);
+    return () => {
+        ReelClickSound.release();
+    }
+  }, []);
+
   useImperativeHandle(reference, () => ({
-    handleReelSpin,
+    handleReelSpin 
   }));
 
   const  handleReelSpin = () => {
@@ -40,14 +57,16 @@ const Reel = forwardRef((props, reference) => {
       useNativeDriver: true,
       easing: Easing.inOut(Easing.exp),
     }).start(() => {
+      
+      // play reel click sound
+      ReelClickSound.play();
       // using a trick to reset the reel to the first set of tiles
       scrollPosition.setValue(
         -((result % initialReelTiles.length) * Constants.windowHeight * 0.85) /
           Constants.numRows,
       );
-      // stop the music
-      // calculate the payout
-      return true;
+      // return the current reel state
+      props.getReelState.current=[reelTiles[result%initialReelTiles.length], reelTiles[(result+1)%initialReelTiles.length], reelTiles[(result+2)%initialReelTiles.length]];
     });
   };
 

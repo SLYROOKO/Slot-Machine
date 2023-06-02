@@ -12,38 +12,29 @@ const Constants = {
   reelSpinDurationDelay: 1000,
   reelSpinMinDuration: 8000,
   //Paylines [row,col] https://www.slotsmate.com/blog/slot-machine-paylines-explained
-  Paylines:{
-    1:[
-	    [[1,0],[1,1],[1,2],[1,3],[1,4]]//middle row #1
-    ],
-	  5:[
+  Paylines:
+    [
+	    [[1,0],[1,1],[1,2],[1,3],[1,4]],//middle row #1
       [[0,0],[0,1],[0,2],[0,3],[0,4]],//Top Row #2
       [[2,0], [2,1], [2,2], [2,3], [2,4]],//Bottom row #3
       [[0,0], [1,1], [2,2], [1,3], [0,4]],//V shape #4 top mid bot mid top
       [[2,0], [1,1], [0,2], [1,3], [2,4]],//reverse V #5  bot mid top mid bot         
-    ],
-    9:[
       [[1,0], [0,1], [1,2], [0,3], [1,4]],//middle top alternating #6
       [[1,0], [2,1], [1,2], [2,3], [1,4]],//middle bot alternating #7
       [[0,0], [0,1], [1,2], [2,3], [2,4]],//top top middle bot bot #8
       [[2,0], [2,1], [1,2], [0,3], [0,4]],//bot bot middle top top #9
-    ],
-    15:[
       [[1,0],[2,1],[1,2],[0,3],[1,4]],//middle bot middle top middle #10
       [[1,0], [0,1], [1,2], [2,3], [1,4]],//middle top middle bot middle #11
       [[0,0], [1,1], [1,2], [1,3], [0,4]],//top middle middle middle top #12
       [[2,0], [1,1], [1,2], [1,3], [2,4]],//bot middle middle middle bot #13
       [[0,0], [1,1], [0,2], [1,3], [0,4]],//top middle alternating #14
       [[2,0], [1,1], [2,2], [1,3], [2,4]],//bot middle alternating #15
-    ],
-    20:[
       [[1,0],[1,1],[0,2],[1,3],[1,4]],//middle middle top middle middle #16
       [[1,0], [1,1], [2,2], [1,3], [1,4]],//middle middle bot middle middle #17
       [[0,0], [0,1], [2,2], [0,3], [0,4]],//top top bot top top #18
       [[2,0], [2,1], [0,2], [2,3], [2,4]],//bot bot top bot bot #19
       [[0,0], [2,1], [2,2], [2,3], [0,4]],//top bot bot bot top #20
-    ]
-  },
+    ],
   Paytable:{
     1:{5:10000,4:2000,3:200,2:10},
     2:{5:750,4:100,3:25,2:2},
