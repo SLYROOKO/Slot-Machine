@@ -66,11 +66,14 @@ function App() {
       //get the first tile of the payline
       let firstTile = reelState[Constants.Paylines[i][0][1]][Constants.Paylines[i][0][0]];
       // while the next tile in the playline is the same as the first tile
-      let paylineIndex=0;
-      while (reelState[Constants.Paylines[i][paylineIndex][1]][Constants.Paylines[i][paylineIndex][0]]==firstTile) {
-        count+=1
-        paylineIndex+=1
+      if (firstTile!=13) {
+        let paylineIndex=0;
+        while (reelState[Constants.Paylines[i][paylineIndex][1]][Constants.Paylines[i][paylineIndex][0]]==firstTile) {
+          count+=1
+          paylineIndex+=1
+        }
       }
+      
       if (count>5) {
         Error("Can't have more than 5 of the same tile in a payline");
       }

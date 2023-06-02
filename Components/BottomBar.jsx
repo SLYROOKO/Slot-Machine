@@ -6,7 +6,7 @@ import SpinPlay from '../assets/sounds/SpinPlay.mp3';
 
 const BottomBar = forwardRef((props,ref) => {
     const [buttonDisable,setButtonDisable]=useState(false);
-    const [credits,setCredits]=useState(1000);
+    const [credits,setCredits]=useState(Constants.startingCredits);
     const Paylines=[1,5,9,15,20];
     const [lineIndex,setLineIndex]=useState(4);
     const [freeSpins,setFreeSpins]=useState(0);
@@ -21,7 +21,7 @@ const BottomBar = forwardRef((props,ref) => {
     });
 
     useEffect(() => {
-        SpinPlaySound.setVolume(0.2);
+        SpinPlaySound.setVolume(0.01);
         return () => {
             SpinPlaySound.release();
         }

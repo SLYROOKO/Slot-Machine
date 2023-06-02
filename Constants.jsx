@@ -8,7 +8,8 @@ const Constants = {
   backgroundColor: 'black',
   wildCardMutationChance: 0.1,
   reelRepeatCount: 50,
-  minimumSpinCycleCount: 3,
+  minimumSpinCycleCount: 5,
+  startingCredits: 500,
   reelSpinDurationDelay: 1000,
   reelSpinMinDuration: 8000,
   //Paylines [row,col] https://www.slotsmate.com/blog/slot-machine-paylines-explained

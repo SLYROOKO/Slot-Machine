@@ -3,7 +3,7 @@ import Tile from './Tile';
 import Constants from '../Constants';
 import { forwardRef, useImperativeHandle, useEffect } from 'react';
 import Sound from 'react-native-sound';
-import ReelClick from '../assets/sounds/ReelClick.mp3';
+import CountDown from '../assets/sounds/5_4_3_2_1.mp3';
 
 const Reel = forwardRef((props, reference) => {
   let scrollPosition = new Animated.Value(0);
@@ -24,7 +24,7 @@ const Reel = forwardRef((props, reference) => {
   }
 
   Sound.setCategory('Playback');
-  var ReelClickSound = new Sound(ReelClick, (error) => {
+  var CountDownSound = new Sound(CountDown, (error) => {
       if (error) {
           console.log('failed to load the sound', error);
           return;
@@ -32,9 +32,10 @@ const Reel = forwardRef((props, reference) => {
   });
 
   useEffect(() => {
-    ReelClickSound.setVolume(100);
+    CountDownSound.setVolume(.1);
+    console.log(CountDownSound.getVolume());
     return () => {
-        ReelClickSound.release();
+        CountDownSound.release();
     }
   }, []);
 
@@ -46,10 +47,10 @@ const Reel = forwardRef((props, reference) => {
     const result =
       Math.floor(
         Math.random() *
-          (reelTiles.length -
+          ((reelTiles.length - initialReelTiles.length) -
             Constants.minimumSpinCycleCount * initialReelTiles.length),
-      ) +
-      Constants.minimumSpinCycleCount * initialReelTiles.length;
+      ) 
+      +Constants.minimumSpinCycleCount * initialReelTiles.length;
 
     Animated.timing(scrollPosition, {
       toValue: -(result * Constants.windowHeight * 0.85) / Constants.numRows,
@@ -59,7 +60,9 @@ const Reel = forwardRef((props, reference) => {
     }).start(() => {
       
       // play reel click sound
-      ReelClickSound.play();
+      if(props.reelIndex==0){
+        CountDownSound.play();
+      }
       // using a trick to reset the reel to the first set of tiles
       scrollPosition.setValue(
         -((result % initialReelTiles.length) * Constants.windowHeight * 0.85) /
