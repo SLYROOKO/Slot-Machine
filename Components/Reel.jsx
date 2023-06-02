@@ -1,9 +1,8 @@
 import { StyleSheet, View, Animated, Easing } from 'react-native';
 import Tile from './Tile';
 import Constants from '../Constants';
-import { forwardRef, useImperativeHandle, useEffect } from 'react';
-import Sound from 'react-native-sound';
-import CountDown from '../assets/sounds/5_4_3_2_1.mp3';
+import { forwardRef, useImperativeHandle, useEffect, useState, useRef } from 'react';
+import { Audio } from 'expo-av';
 
 const Reel = forwardRef((props, reference) => {
   let scrollPosition = new Animated.Value(0);
@@ -23,21 +22,27 @@ const Reel = forwardRef((props, reference) => {
     reelTiles = reelTiles.concat(initialReelTiles);
   }
 
-  Sound.setCategory('Playback');
-  var CountDownSound = new Sound(CountDown, (error) => {
-      if (error) {
-          console.log('failed to load the sound', error);
-          return;
-      }
-  });
+  const soundRef = useRef();
 
-  useEffect(() => {
-    CountDownSound.setVolume(.1);
-    console.log(CountDownSound.getVolume());
-    return () => {
-        CountDownSound.release();
-    }
-  }, []);
+    async function playSound() {
+        console.log('Loading Sound');
+        const { sound } = await Audio.Sound.createAsync( require('../assets/sounds/5_4_3_2_1.mp3')
+        );
+        //increase volume
+        soundRef.current=sound;
+    
+        console.log('Playing Sound');
+        await sound.playAsync();
+      }
+
+      useEffect(() => {
+        return soundRef
+          ? () => {
+              console.log('Unloading Sound');
+              soundRef.current.unloadAsync();
+            }
+          : undefined;
+      }, [soundRef.current]);
 
   useImperativeHandle(reference, () => ({
     handleReelSpin 
@@ -61,7 +66,7 @@ const Reel = forwardRef((props, reference) => {
       
       // play reel click sound
       if(props.reelIndex==0){
-        CountDownSound.play();
+        playSound();
       }
       // using a trick to reset the reel to the first set of tiles
       scrollPosition.setValue(

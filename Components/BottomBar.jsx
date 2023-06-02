@@ -1,8 +1,7 @@
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import Constants from '../Constants';
 import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
-import Sound from 'react-native-sound';
-import SpinPlay from '../assets/sounds/SpinPlay.mp3';
+import { Audio } from 'expo-av';
 
 const BottomBar = forwardRef((props,ref) => {
     const [buttonDisable,setButtonDisable]=useState(false);
@@ -11,21 +10,27 @@ const BottomBar = forwardRef((props,ref) => {
     const [lineIndex,setLineIndex]=useState(4);
     const [freeSpins,setFreeSpins]=useState(0);
 
+    const [sound, setSound] = useState();
 
-    Sound.setCategory('Playback');
-    var SpinPlaySound = new Sound(SpinPlay, (error) => {
-        if (error) {
-            console.log('failed to load the sound', error);
-            return;
-        }
-    });
+    async function playSound() {
+        console.log('Loading Sound');
+        const { sound } = await Audio.Sound.createAsync( require('../assets/sounds/SpinPlay.mp3')
+        );
+        sound.setVolumeAsync(0.1);
+        setSound(sound);
+    
+        console.log('Playing Sound');
+        await sound.playAsync();
+      }
 
-    useEffect(() => {
-        SpinPlaySound.setVolume(0.01);
-        return () => {
-            SpinPlaySound.release();
-        }
-    }, []);
+      useEffect(() => {
+        return sound
+          ? () => {
+              console.log('Unloading Sound');
+              sound.unloadAsync();
+            }
+          : undefined;
+      }, [sound]);
 
     useImperativeHandle(ref, () => ({
         addCredits: (amount) => {
@@ -36,7 +41,7 @@ const BottomBar = forwardRef((props,ref) => {
     const handleButtonPress = () => {
         setCredits(credits-Paylines[lineIndex]);
         props.getPaylineState.current=Paylines[lineIndex];
-        SpinPlaySound.play();
+        playSound();
         setButtonDisable(true);
         //disable changing paylines
         props.spinreel();
