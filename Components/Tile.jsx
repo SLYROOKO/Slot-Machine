@@ -1,7 +1,18 @@
-import { View, Image, StyleSheet } from 'react-native';
+import {View, Image, StyleSheet} from 'react-native';
 import TileImages from '../Images';
+import {useState, forwardRef, useImperativeHandle} from 'react';
 
-const Tile = (props) => {
+const Tile = forwardRef((props, ref) => {
+  const [active, setActive] = useState(true);
+
+  useImperativeHandle(ref, () => ({
+    highlight,
+  }));
+
+  const highlight = active => {
+    setActive(active);
+  };
+
   const getTileImage = () => {
     switch (props.tileType) {
       case 1:
@@ -24,13 +35,12 @@ const Tile = (props) => {
         return TileImages.Reinhardt;
       case 10:
         return TileImages.Ana;
-      case 11:  
+      case 11:
         return TileImages.Widow;
       case 12:
         return TileImages.WreckingBall;
       default:
         return TileImages.LootBox;
-        
     }
   };
 
@@ -42,7 +52,7 @@ const Tile = (props) => {
       width: props.width,
       height: props.height,
       resizeMode: 'stretch',
-      // opacity: 0.3,
+      opacity: active ? 1.0 : 0.2,
     },
   });
 
@@ -51,6 +61,6 @@ const Tile = (props) => {
       <Image style={styles.image} source={getTileImage()}></Image>
     </View>
   );
-};
+});
 
 export default Tile;

@@ -13,7 +13,8 @@
 ## Todo
 
 1. Highlight Winning Lines
-2. Add Wildcard Logic to payouts
+2. Refactor ReelContainer
+   1. use an array to hold reel refs
 3. Menu Bar
    1. Round Edges
    2. Line Selector Arrows
@@ -24,9 +25,9 @@
 6. Add Credit Buy Screen
    1. click the credit button to open screen
 7. Sound Effects
-   1. Find new effect for real stop (athena voice line "5,4,3,2,1")
-      1. only call on first real stop
-   2. if win with a character, play the character sound
+   1. if win with a character, play the character sound
+   2. jackpot sound
+   3. credit insert sound
 8. Auto Spin
    1. Add Auto Spin button
    2. Turn into Stop button during auto spin
@@ -35,3 +36,4 @@
    2. Auto Spin during free spins
    3. 3x multiplier during free spins
 10. Add tests for payline logic
+11. Add Wildcard Logic to payouts
