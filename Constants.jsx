@@ -7,12 +7,12 @@ const Constants = {
   numColumns: 5,
   backgroundColor: 'black',
   wildCardMutationChance: 0.1,
-  reelRepeatCount: 50,
-  minimumSpinCycleCount: 5,
+  reelRepeatCount: 50,//50 must be at least 1 greater than minimumSpinCycleCount
+  minimumSpinCycleCount: 5,//5
   startingCredits: 500,
   reelSpinDurationDelay: 1000,
   reelSpinMinDuration: 8000,
-  winningPaylinesHighlightDuration: 1500,
+  winningPaylinesHighlightDuration: 2000,
   //Paylines [row,col] https://www.slotsmate.com/blog/slot-machine-paylines-explained
   Paylines: [
     [

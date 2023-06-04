@@ -12,12 +12,12 @@
 
 ## Todo
 
-1. Highlight Winning Lines
-2. Refactor ReelContainer
-   1. use an array to hold reel refs
-3. Menu Bar
+1. Menu Bar
    1. Round Edges
    2. Line Selector Arrows
+2. Test if sounds work on release build
+3. Automate Releases
+   1. [release tool](https://github.com/marketplace/actions/automatic-releases)
 4. Settings button top left
    1. Add Settings Screen
 5. Info (Payout Table) button top right
@@ -36,4 +36,5 @@
    2. Auto Spin during free spins
    3. 3x multiplier during free spins
 10. Add tests for payline logic
+    1. Config Jest
 11. Add Wildcard Logic to payouts

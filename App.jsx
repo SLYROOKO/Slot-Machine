@@ -1,28 +1,21 @@
 import {SafeAreaView, View, StyleSheet} from 'react-native';
-import Reel from './Components/Reel';
 import Constants from './Constants';
 import {useRef} from 'react';
 import BottomBar from './Components/BottomBar';
+import Reel from './Components/Reel';
 
 function App() {
-  const reelController1 = useRef();
-  const reelController2 = useRef();
-  const reelController3 = useRef();
-  const reelController4 = useRef();
-  const reelController5 = useRef();
-  const reelState1 = useRef([]);
-  const reelState2 = useRef([]);
-  const reelState3 = useRef([]);
-  const reelState4 = useRef([]);
-  const reelState5 = useRef([]);
+  const reelControllers = [];
+  const reelStates = [];
+  for (let i = 0; i < Constants.numColumns; i++) {
+    reelStates.push(useRef([]));
+  }
   const winningPaylines = useRef([]);
 
   const handleSpin = () => {
-    reelController1.current.handleReelSpin();
-    reelController2.current.handleReelSpin();
-    reelController3.current.handleReelSpin();
-    reelController4.current.handleReelSpin();
-    reelController5.current.handleReelSpin();
+    reelControllers.forEach(reelController => {
+      reelController.handleReelSpin();
+    });
     setTimeout(() => {
       handlePayout();
     }, Constants.reelSpinDurationDelay * 5 + Constants.reelSpinMinDuration);
@@ -35,11 +28,11 @@ function App() {
     winningPaylines.current = [];
     let totalPayout = 0;
     let reelState = [
-      reelState1.current,
-      reelState2.current,
-      reelState3.current,
-      reelState4.current,
-      reelState5.current,
+      reelStates[0].current,
+      reelStates[1].current,
+      reelStates[2].current,
+      reelStates[3].current,
+      reelStates[4].current,
     ];
     if (paylineState.current >= 1) {
       totalPayout += calculatePayout(reelState, 0, 1);
@@ -59,8 +52,7 @@ function App() {
     totalPayout += calculateLootBoxPayout(reelState);
     if (totalPayout > 0) {
       addCredits.current.addCredits(totalPayout);
-      console.log('start highlight');
-      highlightWinningPaylines(0, false);
+      highlightWinningPaylines(0);
     }
     //play sounds based on payout
     //totalpayout>5*paylines played play smallwin sound
@@ -68,8 +60,6 @@ function App() {
     //5 in a row play 5inarow sound
     //jackpot play jackpot sound
     //free spins won play free spins sound
-
-    // console.log(winningPaylines.current);
   };
 
   const calculatePayout = (reelState, payLineStart, payLineEnd) => {
@@ -121,6 +111,7 @@ function App() {
         }
       }
     }
+
     if (count > 1) {
       payout += Constants.Paytable[13][count] * paylineState.current;
       winningPaylines.current.push(lootBoxIndexes);
@@ -131,65 +122,60 @@ function App() {
     return payout;
   };
 
-  const highlightWinningPaylines = (winningLineIndex, blank) => {
-    if (winningLineIndex > winningPaylines.current.length - 1) {
+  const highlightWinningPaylines = winningLineIndex => {
+    
+    if (!winningPaylines.current.length) {
       return;
     }
 
-    console.log(winningLineIndex, blank);
-    reelController1.current.setWinningLines([0, 0, 0]);
-    reelController2.current.setWinningLines([0, 0, 0]);
-    reelController3.current.setWinningLines([0, 0, 0]);
-    reelController4.current.setWinningLines([0, 0, 0]);
-    reelController5.current.setWinningLines([0, 0, 0]);
-    if (!blank) {
-      //loop through each tile in the payline
-      console.log(winningPaylines.current[winningLineIndex]);
-      //highlight each tile in the payline
-      let temp = Array(5)
-        .fill(0)
-        .map(() => Array(3).fill(0));
-      for (
-        let i = 0;
-        i < winningPaylines.current[winningLineIndex].length;
-        i++
-      ) {
-        temp[winningPaylines.current[winningLineIndex][i][1]][
-          winningPaylines.current[winningLineIndex][i][0]
-        ] = 1;
-      }
-
-      // reelController1.current.setWinningLines(temp[0]);
-      // reelController2.current.setWinningLines(temp[1]);
-      // reelController3.current.setWinningLines(temp[2]);
-      // reelController4.current.setWinningLines(temp[3]);
-      // reelController5.current.setWinningLines(temp[4]);
-      console.log(temp);
+    if (winningLineIndex > 0) {
+      reelControllers.forEach(reelController => {
+        reelController.setWinningLines([0, 0, 0]);
+      });
     }
 
+    if (winningLineIndex > winningPaylines.current.length - 1) {
+      reelControllers.forEach(reelController => {
+        reelController.setWinningLines([1, 1, 1]);
+      });
+      return;
+    }
+
+    let temp = Array(5)
+      .fill(0)
+      .map(() => Array(3).fill(0));
+
+    for (let i = 0; i < winningPaylines.current[winningLineIndex].length; i++) {
+      temp[winningPaylines.current[winningLineIndex][i][1]][
+        winningPaylines.current[winningLineIndex][i][0]
+      ] = 1;
+    }
+
+    reelControllers.forEach((reelController, index) => {
+      reelController.setWinningLines(temp[index]);
+    });
+
     setTimeout(() => {
-      if (blank) {
-        highlightWinningPaylines(winningLineIndex + 1, !blank);
-      } else {
-        highlightWinningPaylines(winningLineIndex, !blank);
-      }
+      highlightWinningPaylines(winningLineIndex + 1);
     }, Constants.winningPaylinesHighlightDuration);
   };
 
-  const ReelContainer = (
-    <View style={styles.reelContainer}>
-      <Reel reelIndex={0} ref={reelController1} getReelState={reelState1} />
-      <Reel reelIndex={1} ref={reelController2} getReelState={reelState2} />
-      <Reel reelIndex={2} ref={reelController3} getReelState={reelState3} />
-      <Reel reelIndex={3} ref={reelController4} getReelState={reelState4} />
-      <Reel reelIndex={4} ref={reelController5} getReelState={reelState5} />
-    </View>
-  );
+  const ReelContainer = [];
+  for (let i = 0; i < Constants.numColumns; i++) {
+    ReelContainer.push(
+      <Reel
+        key={i}
+        reelIndex={i}
+        ref={ref => (reelControllers[i] = ref)}
+        reelState={reelStates[i]}
+      />,
+    );
+  }
 
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        {ReelContainer}
+        <View style={styles.reelContainer}>{ReelContainer}</View>
         <BottomBar
           spinreel={handleSpin}
           ref={addCredits}

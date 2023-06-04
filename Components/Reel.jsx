@@ -1,7 +1,7 @@
 import {StyleSheet, View, Animated, Easing} from 'react-native';
 import Tile from './Tile';
 import Constants from '../Constants';
-import {forwardRef, useImperativeHandle, useRef} from 'react';
+import {forwardRef, useEffect, useImperativeHandle, useRef} from 'react';
 import {Audio} from 'expo-av';
 
 const Reel = forwardRef((props, reference) => {
@@ -42,18 +42,6 @@ const Reel = forwardRef((props, reference) => {
   }));
 
   const setWinningLines = winningLineList => {
-    console.log(
-      'winningLineList',
-      winningLineList,
-      'resultStore.current',
-      // resultStore.current,
-      reelTiles[resultStore.current],
-      reelTiles[(resultStore.current + 1)],
-      reelTiles[(resultStore.current + 2)]
-    );
-    //something is super buggy here
-    //something to do with resultStore.current
-    //different implementation?
     if (winningLineList.length != 3) {
       return;
     }
@@ -61,17 +49,17 @@ const Reel = forwardRef((props, reference) => {
       ? tileRefs[resultStore.current].highlight(true)
       : tileRefs[resultStore.current].highlight(false);
     winningLineList[1] == 1
-      ? tileRefs[(resultStore.current + 1) % initialReelTiles.length].highlight(
+      ? tileRefs[(resultStore.current + 1)].highlight(
           true,
         )
-      : tileRefs[(resultStore.current + 1) % initialReelTiles.length].highlight(
+      : tileRefs[(resultStore.current + 1)].highlight(
           false,
         );
     winningLineList[2] == 1
-      ? tileRefs[(resultStore.current + 2) % initialReelTiles.length].highlight(
+      ? tileRefs[(resultStore.current + 2)].highlight(
           true,
         )
-      : tileRefs[(resultStore.current + 2) % initialReelTiles.length].highlight(
+      : tileRefs[(resultStore.current + 2)].highlight(
           false,
         );
   };
@@ -91,14 +79,12 @@ const Reel = forwardRef((props, reference) => {
       ) +
       Constants.minimumSpinCycleCount * initialReelTiles.length;
 
-    resultStore.current = result % initialReelTiles.length;
-
     Animated.timing(scrollPosition, {
       toValue: -(result * Constants.windowHeight * 0.85) / Constants.numRows,
       duration:
         Constants.reelSpinMinDuration +
         props.reelIndex * Constants.reelSpinDurationDelay, // spin for longer the further to the right the reel is,
-      useNativeDriver: true,
+      useNativeDriver: false,
       easing: Easing.inOut(Easing.exp),
     }).start(() => {
       // play reel click sound
@@ -110,8 +96,9 @@ const Reel = forwardRef((props, reference) => {
         -((result % initialReelTiles.length) * Constants.windowHeight * 0.85) /
           Constants.numRows,
       );
+      resultStore.current = result % initialReelTiles.length;
       // return the current reel state
-      props.getReelState.current = [
+      props.reelState.current = [
         reelTiles[result % initialReelTiles.length],
         reelTiles[(result + 1) % initialReelTiles.length],
         reelTiles[(result + 2) % initialReelTiles.length],
