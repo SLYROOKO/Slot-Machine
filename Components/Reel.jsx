@@ -1,11 +1,11 @@
-import { StyleSheet, View, Animated, Easing } from 'react-native';
+import {StyleSheet, View, Animated, Easing} from 'react-native';
 import Tile from './Tile';
 import Constants from '../Constants';
-import { forwardRef, useImperativeHandle, useEffect } from 'react';
-import Sound from 'react-native-sound';
-import ReelClick from '../assets/sounds/ReelClick.mp3';
+import {forwardRef, useEffect, useImperativeHandle, useRef} from 'react';
+import {Audio} from 'expo-av';
 
 const Reel = forwardRef((props, reference) => {
+  const resultStore = useRef(0);
   let scrollPosition = new Animated.Value(0);
 
   //create an array of 13 tiles
@@ -23,50 +23,86 @@ const Reel = forwardRef((props, reference) => {
     reelTiles = reelTiles.concat(initialReelTiles);
   }
 
-  Sound.setCategory('Playback');
-  var ReelClickSound = new Sound(ReelClick, (error) => {
-      if (error) {
-          console.log('failed to load the sound', error);
-          return;
-      }
-  });
+  let tileRefs = [];
 
-  useEffect(() => {
-    ReelClickSound.setVolume(100);
-    return () => {
-        ReelClickSound.release();
-    }
-  }, []);
+  const soundRef = useRef();
+
+  async function playSound() {
+    const {sound} = await Audio.Sound.createAsync(
+      require('../assets/sounds/5_4_3_2_1.mp3'),
+    );
+    sound.setVolumeAsync(0.5);
+    soundRef.current = sound;
+    await sound.playAsync();
+  }
 
   useImperativeHandle(reference, () => ({
-    handleReelSpin 
+    handleReelSpin,
+    setWinningLines,
   }));
 
-  const  handleReelSpin = () => {
+  const setWinningLines = winningLineList => {
+    if (winningLineList.length != 3) {
+      return;
+    }
+    winningLineList[0] == 1
+      ? tileRefs[resultStore.current].highlight(true)
+      : tileRefs[resultStore.current].highlight(false);
+    winningLineList[1] == 1
+      ? tileRefs[(resultStore.current + 1)].highlight(
+          true,
+        )
+      : tileRefs[(resultStore.current + 1)].highlight(
+          false,
+        );
+    winningLineList[2] == 1
+      ? tileRefs[(resultStore.current + 2)].highlight(
+          true,
+        )
+      : tileRefs[(resultStore.current + 2)].highlight(
+          false,
+        );
+  };
+
+  const handleReelSpin = () => {
+    //turn on all tile highlights
+    tileRefs.forEach(tile => {
+      tile.highlight(true);
+    });
+
     const result =
       Math.floor(
         Math.random() *
           (reelTiles.length -
+            initialReelTiles.length -
             Constants.minimumSpinCycleCount * initialReelTiles.length),
       ) +
       Constants.minimumSpinCycleCount * initialReelTiles.length;
 
     Animated.timing(scrollPosition, {
       toValue: -(result * Constants.windowHeight * 0.85) / Constants.numRows,
-      duration: Constants.reelSpinMinDuration + props.reelIndex * Constants.reelSpinDurationDelay, // spin for longer the further to the right the reel is,
-      useNativeDriver: true,
+      duration:
+        Constants.reelSpinMinDuration +
+        props.reelIndex * Constants.reelSpinDurationDelay, // spin for longer the further to the right the reel is,
+      useNativeDriver: false,
       easing: Easing.inOut(Easing.exp),
     }).start(() => {
-      
       // play reel click sound
-      ReelClickSound.play();
-      // using a trick to reset the reel to the first set of tiles
+      if (props.reelIndex == 0) {
+        playSound();
+      }
+      // using a trick to make the reel appear to be spinning infinitely
       scrollPosition.setValue(
         -((result % initialReelTiles.length) * Constants.windowHeight * 0.85) /
           Constants.numRows,
       );
+      resultStore.current = result % initialReelTiles.length;
       // return the current reel state
-      props.getReelState.current=[reelTiles[result%initialReelTiles.length], reelTiles[(result+1)%initialReelTiles.length], reelTiles[(result+2)%initialReelTiles.length]];
+      props.reelState.current = [
+        reelTiles[result % initialReelTiles.length],
+        reelTiles[(result + 1) % initialReelTiles.length],
+        reelTiles[(result + 2) % initialReelTiles.length],
+      ];
     });
   };
 
@@ -81,6 +117,7 @@ const Reel = forwardRef((props, reference) => {
               width={(Constants.windowHeight * 0.85) / Constants.numRows}
               height={(Constants.windowHeight * 0.85) / Constants.numRows}
               key={index}
+              ref={ref => (tileRefs[index] = ref)}
             />
           );
         })}

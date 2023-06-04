@@ -1,126 +1,190 @@
-import { SafeAreaView, View, StyleSheet } from 'react-native';
-import Reel from './Components/Reel';
+import {SafeAreaView, View, StyleSheet} from 'react-native';
 import Constants from './Constants';
-import { useRef } from 'react';
+import {useRef} from 'react';
 import BottomBar from './Components/BottomBar';
+import Reel from './Components/Reel';
 
 function App() {
-  const reelController1 = useRef();
-  const reelController2 = useRef();
-  const reelController3 = useRef();
-  const reelController4 = useRef();
-  const reelController5 = useRef();
-  const reelState1=useRef([]);
-  const reelState2=useRef([]);
-  const reelState3=useRef([]);
-  const reelState4=useRef([]);
-  const reelState5=useRef([]);
+  const reelControllers = [];
+  const reelStates = [];
+  for (let i = 0; i < Constants.numColumns; i++) {
+    reelStates.push(useRef([]));
+  }
+  const winningPaylines = useRef([]);
 
   const handleSpin = () => {
-    reelController1.current.handleReelSpin();
-    reelController2.current.handleReelSpin();
-    reelController3.current.handleReelSpin();
-    reelController4.current.handleReelSpin();
-    reelController5.current.handleReelSpin();
+    reelControllers.forEach(reelController => {
+      reelController.handleReelSpin();
+    });
     setTimeout(() => {
       handlePayout();
-  }, Constants.reelSpinDurationDelay*5+Constants.reelSpinMinDuration);
+    }, Constants.reelSpinDurationDelay * 5 + Constants.reelSpinMinDuration);
   };
 
   const addCredits = useRef();
   const paylineState = useRef(1);
 
   const handlePayout = () => {
-    let totalPayout=0;
-    let reelState=[reelState1.current, reelState2.current, reelState3.current, reelState4.current, reelState5.current];
-    if (paylineState.current>=1) {
-      totalPayout+=calculatePayout(reelState, 0, 1);
+    winningPaylines.current = [];
+    let totalPayout = 0;
+    let reelState = [
+      reelStates[0].current,
+      reelStates[1].current,
+      reelStates[2].current,
+      reelStates[3].current,
+      reelStates[4].current,
+    ];
+    if (paylineState.current >= 1) {
+      totalPayout += calculatePayout(reelState, 0, 1);
     }
-    if (paylineState.current>=5) {  
-      totalPayout+=calculatePayout(reelState, 1, 5);
+    if (paylineState.current >= 5) {
+      totalPayout += calculatePayout(reelState, 1, 5);
     }
-    if (paylineState.current>=9) {
-      totalPayout+=calculatePayout(reelState, 5, 9);
+    if (paylineState.current >= 9) {
+      totalPayout += calculatePayout(reelState, 5, 9);
     }
-    if (paylineState.current>=15) {
-      totalPayout+=calculatePayout(reelState, 9, 15);
+    if (paylineState.current >= 15) {
+      totalPayout += calculatePayout(reelState, 9, 15);
     }
-    if (paylineState.current>=20) {
-      totalPayout+=calculatePayout(reelState, 15, 20);
+    if (paylineState.current >= 20) {
+      totalPayout += calculatePayout(reelState, 15, 20);
     }
-    totalPayout+=calculateLootBoxPayout(reelState);
-    addCredits.current.addCredits(totalPayout);
+    totalPayout += calculateLootBoxPayout(reelState);
+    if (totalPayout > 0) {
+      addCredits.current.addCredits(totalPayout);
+      highlightWinningPaylines(0);
+    }
     //play sounds based on payout
     //totalpayout>5*paylines played play smallwin sound
     //totalpayout>10*paylines played play bigwin sound
     //5 in a row play 5inarow sound
     //jackpot play jackpot sound
     //free spins won play free spins sound
-  }
+  };
 
   const calculatePayout = (reelState, payLineStart, payLineEnd) => {
-    let payout=0;
-    
-    for(let i =payLineStart;i<payLineEnd;i++) {//loop throught each payline
+    let payout = 0;
+
+    for (let i = payLineStart; i < payLineEnd; i++) {
+      //loop throught each payline
       let count = 0;
       //get the first tile of the payline
-      let firstTile = reelState[Constants.Paylines[i][0][1]][Constants.Paylines[i][0][0]];
+      let firstTile =
+        reelState[Constants.Paylines[i][0][1]][Constants.Paylines[i][0][0]];
       // while the next tile in the playline is the same as the first tile
-      let paylineIndex=0;
-      while (reelState[Constants.Paylines[i][paylineIndex][1]][Constants.Paylines[i][paylineIndex][0]]==firstTile) {
-        count+=1
-        paylineIndex+=1
+      if (firstTile != 13) {
+        let paylineIndex = 0;
+        while (
+          reelState[Constants.Paylines[i][paylineIndex][1]][
+            Constants.Paylines[i][paylineIndex][0]
+          ] == firstTile
+        ) {
+          count += 1;
+          paylineIndex += 1;
+        }
       }
-      if (count>5) {
+
+      if (count > 0) {
         Error("Can't have more than 5 of the same tile in a payline");
       }
-      if (count>1) {
-        payout+=Constants.Paytable[firstTile][count];
-      }
-    }
-
-    return payout;
-  }
-
-  const calculateLootBoxPayout = (reelState) => {
-    let payout=0;
-    let count = 0;
-    for (let i=0;i<reelState.length;i++) {
-      for (let j=0;j<reelState[i].length;j++) {
-        if (reelState[i][j]==13) {
-          count+=1;
+      if (count > 1) {
+        let winnings = Constants.Paytable[firstTile][count];
+        payout += winnings;
+        if (winnings > 0) {
+          winningPaylines.current.push(Constants.Paylines[i]);
         }
       }
     }
-    if (count>1) {
-      payout+=Constants.Paytable[13][count]*paylineState.current;
+
+    return payout;
+  };
+
+  const calculateLootBoxPayout = reelState => {
+    let payout = 0;
+    let count = 0;
+    let lootBoxIndexes = [];
+    for (let i = 0; i < reelState.length; i++) {
+      for (let j = 0; j < reelState[i].length; j++) {
+        if (reelState[i][j] == 13) {
+          count += 1;
+          lootBoxIndexes.push([j, i]);
+        }
+      }
     }
-    if (count>2){
+
+    if (count > 1) {
+      payout += Constants.Paytable[13][count] * paylineState.current;
+      winningPaylines.current.push(lootBoxIndexes);
+    }
+    if (count > 2) {
       //set freespins +=15
     }
     return payout;
+  };
+
+  const highlightWinningPaylines = winningLineIndex => {
+    
+    if (!winningPaylines.current.length) {
+      return;
+    }
+
+    if (winningLineIndex > 0) {
+      reelControllers.forEach(reelController => {
+        reelController.setWinningLines([0, 0, 0]);
+      });
+    }
+
+    if (winningLineIndex > winningPaylines.current.length - 1) {
+      reelControllers.forEach(reelController => {
+        reelController.setWinningLines([1, 1, 1]);
+      });
+      return;
+    }
+
+    let temp = Array(5)
+      .fill(0)
+      .map(() => Array(3).fill(0));
+
+    for (let i = 0; i < winningPaylines.current[winningLineIndex].length; i++) {
+      temp[winningPaylines.current[winningLineIndex][i][1]][
+        winningPaylines.current[winningLineIndex][i][0]
+      ] = 1;
+    }
+
+    reelControllers.forEach((reelController, index) => {
+      reelController.setWinningLines(temp[index]);
+    });
+
+    setTimeout(() => {
+      highlightWinningPaylines(winningLineIndex + 1);
+    }, Constants.winningPaylinesHighlightDuration);
+  };
+
+  const ReelContainer = [];
+  for (let i = 0; i < Constants.numColumns; i++) {
+    ReelContainer.push(
+      <Reel
+        key={i}
+        reelIndex={i}
+        ref={ref => (reelControllers[i] = ref)}
+        reelState={reelStates[i]}
+      />,
+    );
   }
 
-
-  const ReelContainer = (
-    <View style={styles.reelContainer}>
-      <Reel reelIndex={0} ref={reelController1} getReelState={reelState1}/>
-      <Reel reelIndex={1} ref={reelController2} getReelState={reelState2}/>
-      <Reel reelIndex={2} ref={reelController3} getReelState={reelState3}/>
-      <Reel reelIndex={3} ref={reelController4} getReelState={reelState4}/>
-      <Reel reelIndex={4} ref={reelController5} getReelState={reelState5}/>
-    </View>
-  );
- 
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        {ReelContainer}
-        <BottomBar spinreel={handleSpin} ref={addCredits} getPaylineState={paylineState}/>
+        <View style={styles.reelContainer}>{ReelContainer}</View>
+        <BottomBar
+          spinreel={handleSpin}
+          ref={addCredits}
+          getPaylineState={paylineState}
+        />
       </View>
     </SafeAreaView>
   );
-  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -134,8 +198,6 @@ const styles = StyleSheet.create({
     height: Constants.windowHeight * 0.85,
     backgroundColor: Constants.backgroundColor,
   },
-
 });
-
 
 export default App;
