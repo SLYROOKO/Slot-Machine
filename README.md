@@ -16,8 +16,9 @@
 
 1. Automate Releases
    1. Add app icon
-   2. create first release
-   3. config [release tool](https://github.com/marketplace/actions/automatic-releases)
+   2. Change app name to OverSlots
+   3. create first release
+   4. config [release tool](https://github.com/marketplace/actions/automatic-releases)
 2. Settings button top left
    1. Add Settings Screen
 3. Info (Payout Table) button top right
@@ -37,6 +38,6 @@
    2. Auto Spin during free spins
    3. 3x multiplier during free spins
 8. Second attempt at aesthetics
-9. Add tests for payline logic
+9.  Add tests for payline logic
     1. Config Jest
 10. Add Wildcard Logic to payouts

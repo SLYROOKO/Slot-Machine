@@ -94,7 +94,7 @@ const Reel = forwardRef((props, reference) => {
       duration:
         Constants.reelSpinMinDuration +
         props.reelIndex * Constants.reelSpinDurationDelay, // spin for longer the further to the right the reel is,
-      useNativeDriver: false,
+      useNativeDriver: true,
       easing: Easing.inOut(Easing.exp),
     }).start(() => {
       // play reel click sound
