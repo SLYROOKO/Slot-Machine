@@ -1,8 +1,9 @@
 import {StyleSheet, View, Animated, Easing} from 'react-native';
 import Tile from './Tile';
 import Constants from '../Constants';
-import {forwardRef, useEffect, useImperativeHandle, useRef} from 'react';
+import {forwardRef, useImperativeHandle, useRef} from 'react';
 import {Audio} from 'expo-av';
+import AppColors from '../AppColors';
 
 const Reel = forwardRef((props, reference) => {
   const resultStore = useRef(0);
@@ -27,14 +28,14 @@ const Reel = forwardRef((props, reference) => {
 
   const soundRef = useRef();
 
-  async function playSound() {
+  const playSound = async () => {
     const {sound} = await Audio.Sound.createAsync(
       require('../assets/sounds/5_4_3_2_1.mp3'),
     );
     sound.setVolumeAsync(0.5);
     soundRef.current = sound;
     await sound.playAsync();
-  }
+  };
 
   useImperativeHandle(reference, () => ({
     handleReelSpin,
@@ -49,19 +50,11 @@ const Reel = forwardRef((props, reference) => {
       ? tileRefs[resultStore.current].highlight(true)
       : tileRefs[resultStore.current].highlight(false);
     winningLineList[1] == 1
-      ? tileRefs[(resultStore.current + 1)].highlight(
-          true,
-        )
-      : tileRefs[(resultStore.current + 1)].highlight(
-          false,
-        );
+      ? tileRefs[resultStore.current + 1].highlight(true)
+      : tileRefs[resultStore.current + 1].highlight(false);
     winningLineList[2] == 1
-      ? tileRefs[(resultStore.current + 2)].highlight(
-          true,
-        )
-      : tileRefs[(resultStore.current + 2)].highlight(
-          false,
-        );
+      ? tileRefs[resultStore.current + 2].highlight(true)
+      : tileRefs[resultStore.current + 2].highlight(false);
   };
 
   const handleReelSpin = () => {
@@ -80,7 +73,7 @@ const Reel = forwardRef((props, reference) => {
       Constants.minimumSpinCycleCount * initialReelTiles.length;
 
     Animated.timing(scrollPosition, {
-      toValue: -(result * Constants.windowHeight * 0.85) / Constants.numRows,
+      toValue: -(result * Constants.reelContainerHeight) / Constants.numRows,
       duration:
         Constants.reelSpinMinDuration +
         props.reelIndex * Constants.reelSpinDurationDelay, // spin for longer the further to the right the reel is,
@@ -93,7 +86,7 @@ const Reel = forwardRef((props, reference) => {
       }
       // using a trick to make the reel appear to be spinning infinitely
       scrollPosition.setValue(
-        -((result % initialReelTiles.length) * Constants.windowHeight * 0.85) /
+        -((result % initialReelTiles.length) * Constants.reelContainerHeight) /
           Constants.numRows,
       );
       resultStore.current = result % initialReelTiles.length;
@@ -114,8 +107,8 @@ const Reel = forwardRef((props, reference) => {
             <Tile
               tileType={tile}
               index={index}
-              width={(Constants.windowHeight * 0.85) / Constants.numRows}
-              height={(Constants.windowHeight * 0.85) / Constants.numRows}
+              width={Constants.reelContainerHeight / Constants.numRows}
+              height={Constants.reelContainerHeight / Constants.numRows}
               key={index}
               ref={ref => (tileRefs[index] = ref)}
             />
@@ -130,6 +123,12 @@ const styles = StyleSheet.create({
   reel: {
     overflow: 'hidden',
     alignItems: 'center',
+    paddingHorizontal: 10,
+    backgroundColor: AppColors.sixtyColor,
+    borderRadius: 10,
+    borderColor: 'black',
+    borderWidth: 2,
+    marginHorizontal: 5,
   },
 });
 
