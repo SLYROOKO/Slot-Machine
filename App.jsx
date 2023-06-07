@@ -1,4 +1,10 @@
-import {SafeAreaView, View, StyleSheet} from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  StyleSheet,
+  ImageBackground,
+  StatusBar,
+} from 'react-native';
 import Constants from './Constants';
 import {useRef} from 'react';
 import BottomBar from './Components/BottomBar';
@@ -21,8 +27,8 @@ function App() {
     }, Constants.reelSpinDurationDelay * 5 + Constants.reelSpinMinDuration);
   };
 
-  const addCredits = useRef();
-  const paylineState = useRef(1);
+  const bottomBarRef = useRef();
+  const paylineState = useRef(0);
 
   const handlePayout = () => {
     winningPaylines.current = [];
@@ -50,10 +56,10 @@ function App() {
       totalPayout += calculatePayout(reelState, 15, 20);
     }
     totalPayout += calculateLootBoxPayout(reelState);
-    if (totalPayout > 0) {
-      addCredits.current.addCredits(totalPayout);
-      highlightWinningPaylines(0);
-    }
+
+    bottomBarRef.current.addCredits(totalPayout);
+    highlightWinningPaylines(0);
+
     //play sounds based on payout
     //totalpayout>5*paylines played play smallwin sound
     //totalpayout>10*paylines played play bigwin sound
@@ -84,7 +90,7 @@ function App() {
         }
       }
 
-      if (count > 0) {
+      if (count > 5) {
         Error("Can't have more than 5 of the same tile in a payline");
       }
       if (count > 1) {
@@ -118,13 +124,14 @@ function App() {
     }
     if (count > 2) {
       //set freespins +=15
+      bottomBarRef.current.addFreeSpins(15);
     }
     return payout;
   };
 
   const highlightWinningPaylines = winningLineIndex => {
-    
     if (!winningPaylines.current.length) {
+      bottomBarRef.current.setPlayButtonDisable(false);
       return;
     }
 
@@ -138,6 +145,7 @@ function App() {
       reelControllers.forEach(reelController => {
         reelController.setWinningLines([1, 1, 1]);
       });
+      bottomBarRef.current.setPlayButtonDisable(false);
       return;
     }
 
@@ -174,14 +182,19 @@ function App() {
 
   return (
     <SafeAreaView>
-      <View style={styles.container}>
-        <View style={styles.reelContainer}>{ReelContainer}</View>
-        <BottomBar
-          spinreel={handleSpin}
-          ref={addCredits}
-          getPaylineState={paylineState}
-        />
-      </View>
+      <ImageBackground
+        source={require('./assets/images/background/b11.jpg')}
+        resizeMode="stretch"
+        style={styles.imageBackground}>
+        <View style={styles.container}>
+          <View style={styles.reelContainer}>{ReelContainer}</View>
+          <BottomBar
+            spinreel={handleSpin}
+            ref={bottomBarRef}
+            getPaylineState={paylineState}
+          />
+        </View>
+      </ImageBackground>
     </SafeAreaView>
   );
 }
@@ -190,13 +203,15 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     justifyContent: 'space-evenly',
-    backgroundColor: 'skyblue',
   },
   reelContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    height: Constants.windowHeight * 0.85,
-    backgroundColor: Constants.backgroundColor,
+    height: Constants.reelContainerHeight,
+  },
+  imageBackground: {
+    justifyContent: 'center',
+    height: Constants.windowHeight - StatusBar.currentHeight,
   },
 });
 

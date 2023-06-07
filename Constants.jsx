@@ -3,12 +3,12 @@ import {Dimensions} from 'react-native';
 const Constants = {
   windowWidth: Dimensions.get('window').width,
   windowHeight: Dimensions.get('window').height,
+  reelContainerHeight: Dimensions.get('window').height * 0.7,
   numRows: 3,
   numColumns: 5,
-  backgroundColor: 'black',
   wildCardMutationChance: 0.1,
-  reelRepeatCount: 50,//50 must be at least 1 greater than minimumSpinCycleCount
-  minimumSpinCycleCount: 5,//5
+  reelRepeatCount: 50, //50 must be at least 1 greater than minimumSpinCycleCount
+  minimumSpinCycleCount: 5, //5
   startingCredits: 500,
   reelSpinDurationDelay: 1000,
   reelSpinMinDuration: 8000,

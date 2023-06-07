@@ -1,0 +1,582 @@
+(NOTE: Subtitles after the "/" are from an earlier revision, and are usually the original language spoken. Sounds not in a folder or with "_removed" don't exist as of the most recent version, and have been manually transcribed.)
+
+[00000000B60C] I'm going to have to shoot you down.
+[00000000B60E] Boosters engaged!
+[00000000B60F] Taking off!
+[00000000B610] D.Va online!
+[00000000B612] (laughs) GG!
+[00000000B613] Time to raise my APM!
+[00000000B70B] (electrocuted sounds)
+[00000000B70C] (grunts)
+[00000000B70D] (screams)
+[00000000B70E] (painful grunt)
+[00000000B70F] (screams)
+[00000000B710] (crushed sounds)
+[00000000B711] (shouts)
+[00000000B712] (grunts)
+[00000000B713] (grunts)
+[00000000B714] (grunts)
+[00000000B715] (dying sounds)
+[00000000B716] (pained breathing)
+[00000000B717] (painful grunt)
+[00000000B718] (electrocuted sounds)
+[00000000B719] (coughing and gasping)
+[00000000B71A] (sighs in relief)
+[00000000B71B] (pained breathing)
+[00000000B71C] (gasps)
+[00000000B71D] (painful grunt)
+[00000000B71E] (pained breathing)
+[00000000B71F] (dying sounds)
+[00000000B720] (grunts)
+[00000000B721] (shouts)
+[00000000B722] (exhales)
+[00000000B723] (painful grunt)
+[00000000B724] (coughing and gasping)
+[00000000B725] (shouts)
+[00000000B726] (grunts)
+[00000000B727] (grunts)
+[00000000B728] (pained breathing)
+[00000000B729] (exhales)
+[00000000B72A] (sighs in relief)
+[00000000B72B] (dying sounds)
+[00000000B72C] (grunts)
+[00000000B72D] (shouts)
+[00000000B72E] (sighs in relief)
+[00000000B72F] (pained breathing)
+[00000000B730] (shouts)
+[00000000B731] (painful grunt)
+[00000000B732] (coughing and gasping)
+[00000000B733] (painful grunt)
+[00000000B734] (painful grunt)
+[00000000B735] (painful grunt)
+[00000000B736] (dying sounds)
+[00000000B737] (screams)
+[00000000B738] (grunts)
+[00000000B739] (painful grunt)
+[00000000B73A] (exhales)
+[00000000B73B] (shouts)
+[00000000B73C] (dying sounds)
+[00000000B73D] (grunts)
+[00000000B73E] (grunts)
+[00000000B73F] (dying sounds)
+[00000000B740] (coughing and gasping)
+[00000000B741] (grunts)
+[00000000B742] (screams)
+[00000000B743] (electrocuted sounds)
+[00000000B744] (screams)
+[00000000B745] (electrocuted sounds)
+[00000000B746] (screams)
+[00000000B747] (grunts)
+[00000000B748] (painful grunt)
+[00000000B749] (grunts)
+[00000000B74A] (electrocuted sounds)
+[00000000B74B] (coughing and gasping)
+[00000000B74C] (exhales)
+[00000000B74D] (crushed sounds)
+[00000000B74E] (coughing and gasping)
+[00000000B74F] (screams)
+[00000000B750] (grunts)
+[00000000B924] Oh, you've got some leet skills!
+[00000000B925] Yes.
+[00000000B926] Winky face!
+[00000000B927] (sighs) AFK!
+[00000000B928] Time's running out, everyone attack!
+[00000000B929] (Korean): Nice shot! / 나이스 샷!
+[00000000B92A] High score for sure!
+[00000000B92B] Showtime!
+[00000000B92C] Get ready!
+[00000000B92D] Thanks!
+[00000000B92E] (Korean): Get away! / 거기, 꺼져!
+[00000000B92F] Go forward!
+[00000000B930] (Korean): Oh, man! / 쳇!
+[00000000B931] Hi!
+[00000000B932] I thought you were going to be a challenge.
+[00000000B933] (giggles) Save that for the hall of fame.
+[00000000B934] Enemy turret destroyed.
+[00000000B935] Minor setback, but we can still win this!
+[00000000B936] Bye!
+[00000000B937] I'm ready to initiate self-destruct sequence!
+[00000000B938] Ready!
+[00000000B939] (Korean): Power up! / 파워 업!
+[00000000B93A] Enemy turret's not going to bother us anymore!
+[00000000B93B] Set up here!
+[00000000B93C] Press start to continue.
+[00000000B93D] Yeah!
+[00000000B93E] Last round! This is where it counts!
+[00000000B93F] Payload's moving, get on it!
+[00000000B940] Now that's teamwork!
+[00000000B941] Get through this!
+[00000000B942] Think you can keep up with me?
+[00000000B943] Find the teleporter!
+[00000000B944] (Korean): Bye! / 잘 가!
+[00000000B945] Aw, after this match is over. Right now... it's time to get serious.
+[00000000B946] I'm on a roll!
+[00000000B947] Great teamplay!
+[00000000B948] Bailing out!
+[00000000B949] Now I'll show them!
+[00000000B94A] Are you even trying?
+[00000000B94B] Epic!
+[00000000B94C] I'm not a good loser!
+[00000000B94D] Healed up!
+[00000000B94E] Get owned!
+[00000000B94F] Move the payload!
+[00000000B950] One for my highlight reel!
+[00000000B951] That's a star performance.
+[00000000B952] (chuckles) Check me out, securing the point!
+[00000000B953] I've got your back!
+[00000000B954] Group up with me!
+[00000000B955] Attack the objective!
+[00000000B956] I'm back in the game!
+[00000000B957] Looks like I'm going to have to carry!
+[00000000B958] Let's finish this right now!
+[00000000B959] Sniper! Don't get caught!
+[00000000B95A] Oh, that'll be play of the game! Just wait and see.
+[00000000B95B] Payload's moving, let's knock them back!
+[00000000B95C] Stick with me, and I'll cover you!
+[00000000B95D] Pow!
+[00000000B95E] Ah, there they are!
+[00000000B95F] I'm on offense!
+[00000000B960] Bunny hop!
+[00000000B961] Take out the target!
+[00000000B962] (Korean): Oh yes! / 앗싸!
+[00000000B963] I play to win.
+[00000000B964] I still love you!
+[00000000B965] Damage buff!
+[00000000B966] Thanks!
+[00000000B967] Enemy spotted!
+[00000000B968] (Korean): This is impossible! / 이건 사기야!
+[00000000B969] LOL! (laughs)
+[00000000B96A] Power up!
+[00000000B96B] That one's for my fans!
+[00000000B96C] I'm back in the fight!
+[00000000B96D] Extra life!
+[00000000B96E] (Korean): Time to raise my APM! / APM 좀 올려 볼까!
+[00000000B96F] Yeah! Pocket healer.
+[00000000B970] Top of the scoreboard!
+[00000000B971] There's no way I'm losing! Attack!
+[00000000B972] 1-up!
+[00000000B973] HP max!
+[00000000B974] (laughs) I'll take more of that!
+[00000000B976] Dammit!
+[00000000B977] Alright... Game face... on!
+[00000000B978] Get owned!
+[00000000B979] Why's the payload stopped? Everyone, get on it!
+[00000000B97A] Game on!
+[00000000B97B] New objective: get the payload moving!
+[00000000B97C] (Korean): Awesome! / 대박!
+[00000000B97D] Booo! They're moving the payload.
+[00000000B97E] Don't mess with me!
+[00000000B97F] (Korean): Thanks! / 감사!
+[00000000B980] Behind you!
+[00000000B981] Taking the point. Don't worry... I got this.
+[00000000B982] Fight's not over yet! All we have to do is win this round.
+[00000000B983] (Korean): Game on! / 게임 시작!
+[00000000B984] I can't wait to get into the fight!
+[00000000B985] BRB!
+[00000000B986] MVP? D.Va!
+[00000000B987] Thanks for your support!
+[00000000B988] Payload's stopped! Let's get it moving!
+[00000000B989] 3... 2... 1... / 5... 4... 3... 2... 1...
+[00000000B98A] In 3... 2... 1... / In 5... 4... 3... 2... 1...
+[00000000B98B] Don't worry. I've got this!
+[00000000B98C] No one's beating my high scores!
+[00000000B98D] Game on!
+[00000000B98E] (Korean): This feels awesome! / 완전 좋아!
+[00000000B98F] (Korean): Yes. / 응.
+[00000000B990] Let's get this payload across the finish line!
+[00000000B991] Shot down.
+[00000000B992] Hey! They have a teleporter!
+[00000000B993] (Korean): Oh, how annoying. / 어우, 짜증나.
+[00000000B994] (Korean): Wow, you're pretty cool. / 올... 좀 멋진데?
+[00000000B995] I'm with you!
+[00000000B996] (Korean): Booster on! / 부스터 온!
+[00000000B997] Aw, you must like me!
+[00000000B998] D.Va: 1, bad guys: 0.
+[00000000B999] This is my kind of city! Lights. Camera. Action!
+[00000000B99A] I need healing!
+[00000000B99B] (Korean): Let's do this again! / 다시 한 판 해보자고!
+[00000000B99C] Got it!
+[00000000B99D] Suiting up!
+[00000000B99E] Grr! Enemy's on the point, let's clear them out!
+[00000000B99F] Enemy turret ahead!
+[00000000B9A0] I'm just getting warmed up.
+[00000000B9A1] GL HF!
+[00000000B9A2] No hacks required!
+[00000000B9A3] We've got this! One more round and we win.
+[00000000B9A4] Multikill!
+[00000000B9A5] Enemy's taking the point, time to show my skills!
+[00000000B9A6] See ya!
+[00000000B9A7] Score multiplier!
+[00000000B9A8] (Korean): No way. / 됐거든
+[00000000B9A9] Defense matrix activated!
+[00000000B9AA] Payload moving, let's all work together.
+[00000000B9AB] (Korean): Oh, I'm not sorry for that. / 어머, 안 미안!
+[00000000B9AC] Looks like another victory! Just a little longer.
+[00000000B9AD] (Korean) [?]
+[00000000B9AE] Enemy teleporter located.
+[00000000B9AF] Defend the objective!
+[00000000B9B0] Play of the game!
+[00000000B9B1] Is this easy mode?
+[00000000B9B2] Nerf this!
+[00000000B9B3] Clear the area!
+[00000000B9B4] Fall back!
+[00000000B9B5] (giggles) Of course. Here you go... love, D.Va!
+[00000000B9B6] NS!
+[00000000B9B7] (Korean): 5... 4... 3... 2... 1...
+[00000000B9B8] On my way!
+[00000000B9B9] Huge rez!
+[00000000B9BA] We've got this! Don't let up now!
+[00000000B9BB] This is it! Come on, team!
+[00000000B9BC] Nice shot!
+[00000000B9BD] Now's our chance, press the attack!
+[00000000B9BE] (Korean): I'm flying! / 날아간다!
+[00000000B9BF] (Korean): Impressive! / 올!
+[00000000B9C0] Fully operational!
+[00000000B9C1] Revenge is sweet.
+[00000000B9C2] (laughs) Thanks for the love!
+[00000000B9C3] I'm on defense!
+[00000000B9C4] This objective has my name written all over it!
+[00000000B9C5] I need armor!
+[00000000B9C6] Aww, no fair!
+[00000000B9C7] Take cover!
+[00000000B9C8] Ultimate ready!
+[00000000B9C9] Kill streak!
+[00000000B9CA] I'm too young to die!
+[00000000B9CB] Enemy teleporter destroyed!
+[00000000B9CC] (Korean): Hi! / 안녕!
+[00000000B9CD] I'm going in!
+[00000000B9CE] (Korean): Thanks! / 감사감사!
+[00000000B9CF] Haven't had enough?
+[00000000B9D0] I'm going to own all these noobs!
+[00000000B9D1] No.
+[00000000B9D2] I'm number one!
+[00000000B9D3] Get out of there!
+[00000000B9D4] I need shields.
+[00000000B9D5] Incoming!
+[00000000B9D6] Moving the payload! Let's party up!
+[00000000B9D7] Stop the payload!
+[00000000B9D8] Ouch.
+[00000000B9D9] Go!
+[00000000B9DA] (Korean): Fully operational again. / 다시 완벽하게 작동한다!
+[00000000B9DB] New game plus!
+[00000000B9DC] Combo!
+[00000000B9DD] I could use a hand!
+[00000000B9DE] Okay!
+[00000000B9DF] They're taking the point! Time to get some kills!
+[00000000BB20] No!
+[00000000BB21] (short gasps)
+[00000000BB23] (pained gasps)
+[00000000BB24] (gasping and shivering)
+[00000000BB25] No sweat!
+[00000000BB26] Ding!
+[00000000BB27] Ugh. No way! / (disgust) No way!
+[00000000BB28] (Korean) [?]
+[00000000BB29] You could be a pro like me... someday! (laughs)
+[00000000BB2A] Yeah!
+[00000000BB2B] Oh! For me? / (surprised) For me?
+[00000000BB2C] Up up down down left right left right B A start!
+[00000000BB2D] Let's shoot for a new high score!
+[00000000BB2E] (short gasps)
+[00000000BB2F] Aw yeah!
+[00000000BB30] Hey, try and keep up, okay?
+[00000000BB31] aww okay
+[00000000BB32] Don't give up!
+[00000000BB33] (grunts)
+[00000000BB34] (frustrated sound) / (frustration sound)
+[00000000BB35] (pained gasps)
+[00000000BB36] (Korean): I play to win! / 게임을 하면 이겨야지!
+[00000000BB37] (Korean): Phew! / 휴!
+[00000000BB38] (pained gasps)
+[00000000BB39] Level up!
+[00000000BB3A] (grunts)
+[00000000BB3B] (Korean): Are you an A.I.? / 요거... 인공지능?
+[00000000BB3C] Oh, what did I get?
+[00000000BB3D] Come on
+[00000000BB3E] (growls in frustration) / <exert>
+[00000000BB3F] (laughs) / (short laugh)
+[00000000BB40] Come on! You can do it!
+[00000000BB41] (gasping and shivering)
+[00000000BB42] (grunts) / <exert>
+[00000000BB43] (Korean): I thought I was dead... / 죽는 줄 알았네...
+[00000000BB44] (pained gasps)
+[00000000BB45] (laughs) You can't be serious!
+[00000000BB46] (short gasps)
+[00000000BB47] (grunts) / <exert>
+[00000000BB48] (laughs) / (medium laugh)
+[00000000BB49] (grunts)
+[00000000BB4A] (Korean): I'm still here! / 생존 신고요!
+[00000000BB4B] (gasping and shivering)
+[00000000BB4C] (short gasps)
+[00000000BB4D] (Korean): My hands weren't warmed up! / 아직 손이 덜 풀려서 그래!
+[00000000BB4E] (gasping and shivering)
+[00000000BB4F] Blizzard games? That's so old school. (sighs)
+[00000000BB50] I've got everything under control.
+[00000000BB51] (pained gasps)
+[00000000BB52] (giggle)
+[00000000BB53] (giggle) Looking good!
+[00000000BB54] (short gasps)
+[00000000BB55] Ready player one!
+[00000000BB56] (Korean): Honestly, I've never beaten my dad in StarCraft. / 솔직히 스타로 아빠는 못 이기겠더라.
+[00000000BB57] (gasping and shivering)
+[00000000BB58] (frustrated sound) Hacks!
+[00000000BB59] Aw, yeah!
+[00000002007C] I'm the champion!
+[00000002007D] Woo! I hit the jackpot!
+[00000002007E] Now we're talking!
+[00000002007F] Roger!
+[000000020080] Understood!
+[000000020081] Group up!
+[000000020082] Join me!
+[000000020083] Group up here!
+[000000020084] Hiya!
+[000000020085] I could use some armor!
+[000000020086] I need help!
+[000000020087] We need a healer!
+[000000020088] Need healing!
+[000000020089] D.Va reengaging!
+[00000002008A] I could use some shields!
+[00000002008B] My ultimate is charging!
+[00000002008C] My ultimate is almost ready!
+[00000002008D] My ultimate is ready! Let's do this!
+[00000002008E] My ultimate is charged! Ready player two?
+[00000002008F] GG, GG. Baby, baby.
+[000000020090] Here comes a new challenger!
+[000000020091] Activating self destruct sequence!
+[000000020092] Bang!
+[000000020093] (mimics gunshot sound) / (sound of shooting a gun - bang!)
+[000000020094] Routing power to forward barrier!
+[000000020095] Routing power to forward shields!
+[000000020096] Ah, the classics. I love that movie!
+[000000020097] Thank you!
+[000000020098] Boom-shaka-laka! She's on fire!
+[000000020099] I'm on fire!
+[00000002009A] I'm on fire!
+[00000002009B] I will defend my country!
+[00000002009C] MEKA leads the way!
+[00000002009D] A giant gorilla! Just like in those old video games!
+[00000002009E] Mei! I love reading your journal! I'm so jealous you get to go to all those places.
+[00000002009F] Only if I can get yours, too! I love your new album!
+[0000000200A0] Hey! Hands off!
+[0000000200A1] Who are you calling a child?
+[0000000200A2] All systems operational, D.Va ready for combat.
+[0000000200A3] Yeah.
+[0000000200A4] MEKA activated!
+[0000000200A5] All systems checked out.
+[0000000200A6] Weapon systems overloaded!
+[0000000200A7] Weapons optimized.
+[0000000200A8] Ejecting!
+[0000000200A9] I am good!
+[0000000200AA] How do you like that?
+[0000000200AB] No problem!
+[0000000200AC] Nice try!
+[0000000200AD] Love, D.Va!
+[0000000200AE] (giggles) Aw, you're trying so hard!
+[0000000200AF] L2P.
+[0000000200B0] Target eliminated.
+[0000000200B1] Enemy down.
+[0000000200B2] Enemy team kill!
+[0000000200B3] The enemy team is down!
+[0000000200B4] No fair, you cheater!
+[0000000200B5] Oppa's not my style!
+[0000000200B6] Nice mech, but sometimes bigger isn't better!
+[0000000200B7] The best things in life come in small packages!
+[0000000294BA] (prolonged screaming) / (falling off a cliff)
+[0000000294BB] (prolonged screaming) / (falling off a cliff)
+[0000000294BC] (prolonged screaming) / (falling off a cliff)
+[00000002EB9D] (laughs) / (Laugh - cut to animation)
+[00000002EF5E] You'd better get out of the way!
+[00000002EF61] (Korean): Sorry.
+[00000002EF62] Sorry about that!
+[00000002EF63] Sorry.
+[00000002EF64] (Korean): Apologies.
+[00000002EF65] (Korean): I'm sorry.
+[00000002EF66] You're welcome.
+[00000002EF67] No problem.
+[00000002EF68] (Korean): It's a pleasure.
+[00000002EF69] (Korean): Happy Halloween! / 해피 할로윈!
+[00000002EF6A] Aw, you shouldn't have!
+[00000002EF6B] (Korean): Happy holidays! / 즐거운 연휴 되세요!
+[00000002EF6C] I am unstoppable!
+[00000002EF7D] The destruction caused by the omnics here... it reminds me of home.
+[00000002EF7E] My new year's resolution? Catch up on all the games I need to play!
+[00000002EF7F] 16-Bit Hero.
+[00000002EF83] I know my KDR.
+[00000002EF84] I've been debuffed!
+[00000002EF85] Systems compromised!
+[00000002EF86] (disgusted sound) Not feeling right... / (disgust sound) Not feeling right...
+[00000002EF87] I think this pig's a little undercooked.
+[00000002EF88] No hacks for you.
+[00000002EF89] I think your clock's off.
+[00000002EF8A] Maybe next time.
+[00000002EF8B] It's a good thing I brought an umbrella!
+[00000002EF8C] Denied!
+[00000002EF8D] (Korean): Interrupting ultimate! / 궁극기 차단!
+[00000002EF8E] Enemy detected!
+[00000002EF8F] Someone's stealthed over here!
+[00000002EF90] Uh, was there a party I didn't get invited to? Hrmph.
+[00000002EF92] Size isn't everything.
+[00000002EF93] Well, if you want to give me some upgrades, I'm all ears!
+[00000002EF94] Are you sure life isn't a game, Soldier: 76?
+[00000002EF95] Genji, I heard you used to have all the high scores here.
+[00000002EF96] I hope we don't get banned for this.
+[00000002EF98] Aw, come on, Ana. I bet you got up to all sorts of trouble when you were my age!
+[00000002EF99] Oooh, I can't stand you hackers! You give those of us with skill a bad name.
+[00000002EF9A] It's me! Someone must be hacking!
+[00000002EF9B] (Korean): Damn. / 아, 열 받네.
+[00000002EF9E] Tire destroyed!
+[00000002EF9F] Seeing what happened after the war here gives me hope for the rebuilding of my country.
+[00000002EFA0] (Korean): Oh, I love it! / 짱! 이다!
+[0000000376C9] Heads up! Enemy bastion!
+[0000000376CA] Let's keep the objective moving!
+[0000000376CB] Let's move the objective together!
+[0000000376CC] We're making progress. Keep going!
+[0000000376CD] Enemy objective is damaged!
+[0000000376CE] That objective is going down!
+[0000000376CF] Shouldn't take much more.
+[0000000376D0] Focus our attacks on the objective!
+[0000000376D1] Destroy the objective!
+[0000000376D2] Protect the objective!
+[0000000376D3] We need to group up to continue!
+[0000000376D4] Watch the right!
+[0000000376D5] Watch the left!
+[0000000376D6] Left side!
+[0000000376D7] They're attacking from the front!
+[0000000376D8] Enemy contact in front of us!
+[0000000376D9] Enemy contact at twelve o'clock!
+[0000000376DA] Watch the doorway!
+[0000000376DB] They're coming through the doorway!
+[0000000376DC] They're below us!
+[0000000376DD] The enemy is below us!
+[0000000376DE] Right side!
+[0000000376DF] We must gather together before venturing forth!
+[0000000376E0] Form up, everyone!
+[0000000376E1] Move to the objective!
+[0000000376E2] Cover our flag!
+[0000000376E3] Capture the flag!
+[0000000376E4] Take the enemy flag.
+[0000000376E5] Slicer incoming!
+[0000000376E6] Slicers incoming!
+[0000000376E7] You and me? We've got this.
+[0000000376E8] Come on, the fight's not over yet.
+[0000000376E9] We're almost out of time. Don't let up now!
+[0000000376EA] This is our last chance. Come on!
+[0000000376EB] Let's capture the objective.
+[0000000376EC] The objective is taking damage. Push them back!
+[0000000376ED] The objective's taken a few hits!
+[0000000376EE] Focus our defense on the objective now!
+[0000000376EF] Our objective's on its last legs!
+[0000000376F0] No one to steal my spotlight!
+[0000000376F1] Where'd everyone go?
+[0000000376F2] The objective has been taken out.
+[0000000376F3] Roll for need!
+[0000000376F4] Objective down.
+[0000000376F5] Time to eliminate the objective.
+[0000000376F6] Everyone to the objective!
+[0000000376F7] The enemy is behind us!
+[0000000376F8] They're coming from behind!
+[0000000376F9] The enemy is above us!
+[0000000376FA] They're above us!
+[0000000376FB] Someone else take the flag!
+[0000000376FC] Dropped the flag!
+[0000000376FD] D.Va with the score!
+[0000000376FE] Capped the flag!
+[0000000376FF] (imitating the flag captured sound) / (imitating the sound)
+[000000037700] There's an eradicator!
+[000000037701] They have a shield generator!
+[000000037702] Found their shield generator!
+[000000037703] Enemy shield generator destroyed!
+[000000037708] Enemy detonator!
+[000000037709] I'm not scared!
+[00000003770A] Scoreboard.
+[00000003770C] I get the feeling you're not taking me seriously.
+[00000003770D] Try and keep up.
+[00000003770E] (Korean): Happy New Year! / 새해 복 많이 받으세요!
+[000000037710] Aw, come on!
+[000000037711] Defend our flag.
+[000000037712] Let's not let that happen again.
+[000000037713] Touch our flag, quick!
+[000000037714] Get me back in the fight!
+[000000037715] Revive me!
+[000000037716] OR14 sighted! Prepare to engage.
+[000000037717] Nulltrooper spotted!
+[000000037718] Nulltroopers spotted!
+[00000003771A] I am not the easter bunny.
+[00000003771B] I hope this doesn't take too long. I have a show to put on!
+[00000003771C] Hey, Sombra, I hear you're a master of unlocking.
+[00000003771E] Wow, the view is amazing.
+[00000003771F] Well, they flew me to the moon.
+[000000037720] I'm seriously injured.
+[000000037721] I need healing!
+[000000037722] I'm very hurt over here.
+[000000037723] Flag's going back to base!
+[000000037724] Returning the flag!
+[000000037725] Flag is in my possession!
+[000000037726] I have the flag!
+[000000037727] They've stolen our flag!
+[000000037728] They have our flag! Get it back!
+[000000037729] Someone pick up our flag!
+[00000003772A] I'm over here.
+[00000003772B] I'm right here.
+[00000003772C] Get the flag back!
+[00000003772D] Recover our flag!
+[00000003772E] Our teammate needs to be revived.
+[00000003772F] We have a teammate down!
+[0000000377C9] Defend the objective!
+[0000000377CA] Take out the target!
+[0000000377CB] Looks like another victory! Just a little longer.
+[0000000377CC] Attack the objective!
+[00000003CB72] Yes.
+[00000003CB73] We got this. Don't let up now!
+
+B.Va (NOT Junebug):
+
+[00000002EF57] All systems buzzing!
+[00000002EF58] Weapons systems are buzzing!
+[00000002EF59] Bzzzzz!
+[00000002EF5A] Did that sting?
+[00000002EF5B] I'm the queen bee!
+[00000002EF5C] Taking flight!
+
+Cruiser:
+
+[00000002EF41] Firing up!
+[00000002EF42] I'm crusin' for a bruisin'!
+[00000002EF43] I'm cooking!
+[00000002EF44] We got this made in the shade.
+[00000002EF45] Hey, I'm no ankle-biter!
+[00000002EF46] Pop the clutch and let's go!
+[00000002EF48] Far out!
+[00000002EF49] No sweat.
+[00000002EF4A] (grunt) Flooring it!
+[00000002EF4B] You ordered a knuckle sandwich?
+[00000002EF4C] Get bent!
+[00000002EF4D] Hey, daddy-o!
+[00000002EF4E] Cool it.
+[00000002EF4F] Time to split!
+[00000002EF50] Cutting out!
+[00000002EF51] Hopped up and ready to kill!
+[00000002EF52] Burning rubber!
+[00000002EF53] Right-o!
+
+Junker, Scavenger:
+
+[00000002EF54] Mediocre.
+[00000002EF55] Remember me?
+[00000002EF56] You hear me, baby? Hold together.
+
+Officer:
+
+[000000037733] D.Va reporting in!
+[000000037734] You have the right to remain... oh.
+[000000037735] That was your last warning.
+[000000037736] You're going to get a parking ticket.
+[000000037738] Now authorized to use lethal force.
+
+UNUSED:
+
+[000000057227] Sniper! Don't get caught!
+[000000057228] Shot down.
+[000000057283] Our teammate needs to be revived.
+[000000057284] We have a teammate down!
+[00000005733C] Yeah! Pocket healer.
+[0000000573D1] Enemy down.
