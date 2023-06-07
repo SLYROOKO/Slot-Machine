@@ -18,6 +18,7 @@
    1. Add app icon
    2. create first release
    3. config [release tool](https://github.com/marketplace/actions/automatic-releases)
+2. Save Credit Accross Play Sessions
 2. Settings button top left
    1. Add Settings Screen
 3. Info (Payout Table) button top right
