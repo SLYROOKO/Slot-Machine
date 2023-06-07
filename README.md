@@ -9,8 +9,8 @@
 
 ## Build
 
-```npm start build-android-debug```
-```npm start build-android-release```
+```npm run build-android-debug```
+```npm run build-android-release```
 
 ## Todo
 

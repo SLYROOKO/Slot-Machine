@@ -1,7 +1,7 @@
 import {StyleSheet, View, Animated, Easing} from 'react-native';
 import Tile from './Tile';
 import Constants from '../Constants';
-import {forwardRef, useImperativeHandle, useRef} from 'react';
+import {forwardRef, useEffect, useImperativeHandle, useRef} from 'react';
 import {Audio} from 'expo-av';
 import AppColors from '../AppColors';
 
@@ -29,13 +29,21 @@ const Reel = forwardRef((props, reference) => {
   const soundRef = useRef();
 
   const playSound = async () => {
-    const {sound} = await Audio.Sound.createAsync(
+    let {sound} = await Audio.Sound.createAsync(
       require('../assets/sounds/5_4_3_2_1.mp3'),
     );
     sound.setVolumeAsync(0.5);
     soundRef.current = sound;
-    await sound.playAsync();
+    await soundRef.current.playAsync();
   };
+
+  useEffect(() => {
+    return soundRef.current
+      ? () => {
+          soundRef.current.unloadAsync();
+        }
+      : undefined;
+  }, [soundRef.current]);
 
   useImperativeHandle(reference, () => ({
     handleReelSpin,

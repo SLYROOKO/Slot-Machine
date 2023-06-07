@@ -1,6 +1,6 @@
 import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
 import Constants from '../Constants';
-import {forwardRef, useEffect, useImperativeHandle, useState} from 'react';
+import {forwardRef, useImperativeHandle, useState, useEffect} from 'react';
 import {Audio} from 'expo-av';
 import {AntDesign} from '@expo/vector-icons';
 import AppColors from '../AppColors';
@@ -11,15 +11,26 @@ const BottomBar = forwardRef((props, ref) => {
   const Paylines = [1, 5, 9, 15, 20];
   const [lineIndex, setLineIndex] = useState(4);
   const [freeSpins, setFreeSpins] = useState(0);
-  const [sound] = useState();
+
+  const [sound, setSound] = useState();
 
   const playSound = async () => {
-    const {sound} = await Audio.Sound.createAsync(
+    let {sound} = await Audio.Sound.createAsync(
       require('../assets/sounds/SpinPlay.mp3'),
     );
+    setSound(sound);
+
     sound.setVolumeAsync(0.1);
     await sound.playAsync();
   };
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
 
   const adjustLineIndex = goRight => {
     if (lineIndex >= Paylines.length - 1 && goRight) {
@@ -34,14 +45,6 @@ const BottomBar = forwardRef((props, ref) => {
       setLineIndex(lineIndex - 1);
     }
   };
-
-  useEffect(() => {
-    return sound
-      ? () => {
-          sound.unloadAsync();
-        }
-      : undefined;
-  }, [sound]);
 
   useImperativeHandle(ref, () => ({
     addCredits: amount => {
