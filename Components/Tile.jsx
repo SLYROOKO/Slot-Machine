@@ -1,5 +1,5 @@
 import {View, Image, StyleSheet} from 'react-native';
-import TileImages from '../Images';
+import TileImages from '../Global/Images';
 import {useState, forwardRef, useImperativeHandle} from 'react';
 
 const Tile = forwardRef((props, ref) => {

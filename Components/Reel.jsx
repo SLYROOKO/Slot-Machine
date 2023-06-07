@@ -1,9 +1,9 @@
 import {StyleSheet, View, Animated, Easing} from 'react-native';
 import Tile from './Tile';
-import Constants from '../Constants';
+import Constants from '../Global/Constants';
 import {forwardRef, useEffect, useImperativeHandle, useRef} from 'react';
 import {Audio} from 'expo-av';
-import AppColors from '../AppColors';
+import AppColors from '../Global/AppColors';
 
 const Reel = forwardRef((props, reference) => {
   const resultStore = useRef(0);
@@ -35,14 +35,14 @@ const Reel = forwardRef((props, reference) => {
       handleSoundUnload,
     );
     sound.setVolumeAsync(0.5);
-    sound.setPositionAsync(250);//remove pause at start of sound
+    sound.setPositionAsync(250); //remove pause at start of sound
     soundRef.current = sound;
     await soundRef.current.playAsync();
   };
 
-  const handleSoundUnload = (state) => {
+  const handleSoundUnload = state => {
     if (state.didJustFinish) {
-    soundRef.current.unloadAsync();
+      soundRef.current.unloadAsync();
     }
   };
 

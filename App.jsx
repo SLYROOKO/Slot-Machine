@@ -5,7 +5,7 @@ import {
   ImageBackground,
   StatusBar,
 } from 'react-native';
-import Constants from './Constants';
+import Constants from './Global/Constants';
 import {useRef} from 'react';
 import BottomBar from './Components/BottomBar';
 import Reel from './Components/Reel';

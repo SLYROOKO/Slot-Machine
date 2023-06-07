@@ -1,9 +1,9 @@
 import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
-import Constants from '../Constants';
+import Constants from '../Global/Constants';
 import {forwardRef, useImperativeHandle, useState, useEffect} from 'react';
 import {Audio} from 'expo-av';
 import {AntDesign} from '@expo/vector-icons';
-import AppColors from '../AppColors';
+import AppColors from '../Global/AppColors';
 
 const BottomBar = forwardRef((props, ref) => {
   const [buttonDisable, setButtonDisable] = useState(false);
