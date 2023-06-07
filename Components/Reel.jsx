@@ -31,10 +31,19 @@ const Reel = forwardRef((props, reference) => {
   const playSound = async () => {
     let {sound} = await Audio.Sound.createAsync(
       require('../assets/sounds/5_4_3_2_1.mp3'),
+      null,
+      handleSoundUnload,
     );
     sound.setVolumeAsync(0.5);
+    sound.setPositionAsync(250);//remove pause at start of sound
     soundRef.current = sound;
     await soundRef.current.playAsync();
+  };
+
+  const handleSoundUnload = (state) => {
+    if (state.didJustFinish) {
+    soundRef.current.unloadAsync();
+    }
   };
 
   useEffect(() => {
