@@ -59,11 +59,13 @@ const BottomBar = forwardRef((props, ref) => {
   }));
 
   const handleButtonPress = () => {
+    if (credits>=Paylines[lineIndex]) {
     setCredits(credits - Paylines[lineIndex]);
     props.getPaylineState.current = Paylines[lineIndex];
     playSound();
     setButtonDisable(true);
     props.spinreel();
+    }
   };
 
   const styles = StyleSheet.create({
