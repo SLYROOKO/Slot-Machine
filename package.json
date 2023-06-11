@@ -3,13 +3,14 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "android": "watchman watch-del-all && react-native run-android",
+    "ios": "watchman watch-del-all && react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "build-android-debug": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleDebug && cd ..",
-    "build-android-release": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleRelease && cd .." 
+    "bundle-untested": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/build/intermediates/res/merged/release/",
+    "build-android-debug": "cd android && ./gradlew assembleDebug && cd ..",
+    "build-android-release": "cd android && ./gradlew assembleRelease && cd .."
   },
   "dependencies": {
     "expo": "^48.0.0",
@@ -23,10 +24,6 @@
     "@babel/preset-env": "^7.20.0",
     "@babel/runtime": "^7.20.0",
     "@react-native-community/eslint-config": "^3.2.0",
-    "@tsconfig/react-native": "^2.0.2",
-    "@types/jest": "^29.2.1",
-    "@types/react": "^18.0.24",
-    "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.2.1",
     "eslint": "^8.19.0",
     "jest": "^29.2.1",

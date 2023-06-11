@@ -15,29 +15,28 @@
 ## Todo
 
 1. Automate Releases
-   1. Add app icon
-   2. Change app name to OverSlots
-   3. create first release
-   4. config [release tool](https://github.com/marketplace/actions/automatic-releases)
-2. Settings button top left
-   1. Add Settings Screen
-3. Info (Payout Table) button top right
+   1. create first release
+   2. config [release tool](https://github.com/marketplace/actions/automatic-releases)
+2. Info (Payout Table) button top right
    1. Add Info Screen (Payout Table)
-4. Add Credit Buy Screen
+3. Add Credit Buy Screen
    1. click the credit button to open screen
    2. Save Credit Accross Play Sessions
-5. Sound Effects
+4. Sound Effects
    1. if win with a character, play the character sound
    2. jackpot sound
    3. credit insert sound
-6. Auto Spin
+5. Auto Spin
    1. Add Auto Spin button
    2. Turn into Stop button during auto spin
-7. Free Spins
+6. Free Spins
    1. Change the background color during free spins
    2. Auto Spin during free spins
    3. 3x multiplier during free spins
-8. Second attempt at aesthetics
-9.  Add tests for payline logic
+7. Second attempt at aesthetics
+   1. [Color Wheel](https://www.canva.com/colors/color-wheel)
+8. Add tests for payline logic
     1. Config Jest
-10. Add Wildcard Logic to payouts
+9. Add Wildcard Logic to payouts
+10. Settings button top left
+    1. Add Settings Screen
