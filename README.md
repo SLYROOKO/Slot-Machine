@@ -15,10 +15,8 @@
 ## Todo
 
 1. Automate Releases
-   1. Add app icon
-   2. Change app name to OverSlots
-   3. create first release
-   4. config [release tool](https://github.com/marketplace/actions/automatic-releases)
+   1. create first release
+   2. config [release tool](https://github.com/marketplace/actions/automatic-releases)
 2. Settings button top left
    1. Add Settings Screen
 3. Info (Payout Table) button top right
