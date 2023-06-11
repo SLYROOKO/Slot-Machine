@@ -1,5 +1,7 @@
 # Slot-machine game using react native
 
+![ScreenShot](/Slot-Machine/assets/ScreenShot.png?raw=true "Employee Data title")
+
 ## Development
 
 ```npx react-native run-ios```

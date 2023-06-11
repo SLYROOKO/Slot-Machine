@@ -30,13 +30,17 @@ const InfoScreen = ({navigation}) => {
   return (
     <SafeAreaView>
       {infoButton}
-      <ScrollView>
+      <ScrollView style={styles.scrollView}>
         <Text>InfoScreen</Text>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  scrollView: {
+    backgroundColor: 'pink',
+  },
+});
 
 export default InfoScreen;
