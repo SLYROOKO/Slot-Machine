@@ -1,4 +1,10 @@
-import {SafeAreaView, StyleSheet, Text, Pressable} from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  Pressable,
+  ScrollView,
+} from 'react-native';
 import {Entypo} from '@expo/vector-icons';
 
 const InfoScreen = ({navigation}) => {
@@ -24,7 +30,9 @@ const InfoScreen = ({navigation}) => {
   return (
     <SafeAreaView>
       {infoButton}
-      <Text>InfoScreen</Text>
+      <ScrollView>
+        <Text>InfoScreen</Text>
+      </ScrollView>
     </SafeAreaView>
   );
 };
