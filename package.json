@@ -8,9 +8,8 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "bundle-untested": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/build/intermediates/res/merged/release/",
     "build-android-debug": "cd android && ./gradlew assembleDebug && cd ..",
-    "build-android-release": "cd android && ./gradlew assembleRelease && cd .."
+    "build-android-release": "rm -rf ./android/app/src/main/res/raw/ && rm -rf ./android/app/src/main/res/drawable-mdpi/ && cd android && ./gradlew assembleRelease && cd .."
   },
   "dependencies": {
     "expo": "^48.0.0",
