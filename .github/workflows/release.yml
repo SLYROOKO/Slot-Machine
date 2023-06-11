@@ -11,18 +11,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Generate Changelog
-        id: changelog
-        uses: TriPSs/conventional-changelog-action@latest
-        with:
-          github-token: ${{ secrets.SLOTMACHINE_GITACTIONS }}
+      - name: install npm dependencies
+        run: npm install
 
-      - name: Create Release
-        uses: actions/create-release@v1
-        if: ${{ steps.changelog.outputs.skipped == 'false' }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.SLOTMACHINE_GITACTIONS }}
+      - name: Build Android APK
+        run: cd android && ./gradlew assembleRelease
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
         with:
-          tag_name: ${{ steps.changelog.outputs.tag }}
-          release_name: ${{ steps.changelog.outputs.tag }}
-          body: ${{ steps.changelog.outputs.changelog }}
+          name: OverSlots
+          path: android/app/build/outputs/apk/release/app-release.apk
