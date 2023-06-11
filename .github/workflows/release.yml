@@ -13,9 +13,6 @@ jobs:
 
       - name: install npm dependencies
         run: npm install
-      
-      - name: install expo
-        run: npx install-expo-modules@latest
 
       - name: remove duplicate assets
         run: rm -rf ./android/app/src/main/res/raw/ && rm -rf ./android/app/src/main/res/drawable-mdpi/
