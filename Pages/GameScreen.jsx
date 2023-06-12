@@ -227,7 +227,7 @@ const GameScreen = ({navigation}) => {
         resizeMode="stretch"
         style={styles.imageBackground}>
         {infoButton}
-        {settingsButton}
+        {/* {settingsButton} */}
         <View style={styles.container}>
           <View style={styles.reelContainer}>{ReelContainer}</View>
           <BottomBar
