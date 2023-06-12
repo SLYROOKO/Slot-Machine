@@ -9,8 +9,9 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="GameScreen" component={GameScreen} />
         <Stack.Screen name="InfoScreen" component={InfoScreen} />
+        <Stack.Screen name="GameScreen" component={GameScreen} />
+        
         <Stack.Screen name="SettingScreen" component={SettingScreen} />
       </Stack.Navigator>
     </NavigationContainer>
