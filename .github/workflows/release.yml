@@ -30,7 +30,7 @@ jobs:
         with:
           prerelease: true
           release_name: ${{steps.date.outputs.date }}
-          tag_name: ${{ github.ref }}
+          tag_name: ${{steps.date.outputs.date}}
         env:
           GITHUB_TOKEN: ${{ secrets.SLOTMACHINE_GITACTIONS }}
 
