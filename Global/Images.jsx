@@ -7,7 +7,7 @@ export const TileImages = {
   Mercy: require('../assets/images/Slot_Icons/Mercy_Tile.png'),
   Reinhardt: require('../assets/images/Slot_Icons/Reinhardt_Tile.png'),
   Sombra: require('../assets/images/Slot_Icons/Sombra_Tile.png'),
-  Widow:  require('../assets/images/Slot_Icons/Widow_Tile.png'),
+  Widow: require('../assets/images/Slot_Icons/Widow_Tile.png'),
   WreckingBall: require('../assets/images/Slot_Icons/WreckingBall_Tile.png'),
   Zen: require('../assets/images/Slot_Icons/Zen_Tile.png'),
   BlackLogo: require('../assets/images/Slot_Icons/BlackLogo_Tile.png'),
@@ -39,4 +39,3 @@ export const PaylineImages = {
   19: require('../assets/images/Paylines/p19.png'),
   20: require('../assets/images/Paylines/p20.png'),
 };
-

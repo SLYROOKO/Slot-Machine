@@ -3,7 +3,7 @@ import {StyleSheet, Image} from 'react-native';
 import {PaylineImages} from '../Global/Images';
 
 const PaylineRow = ({idx}) => {
-  const getPaylineImage = (idx) => {
+  const getPaylineImage = idx => {
     switch (idx + 1) {
       case 1:
         return PaylineImages[1];
@@ -45,14 +45,16 @@ const PaylineRow = ({idx}) => {
         return PaylineImages[19];
       case 20:
         return PaylineImages[20];
-
     }
   };
 
   return (
     <DataTable.Row>
       <DataTable.Cell>{idx + 1}</DataTable.Cell>
-      <Image source={getPaylineImage(idx)} style={{flex:1,height:200, resizeMode:'contain'}}s></Image>
+      <Image
+        source={getPaylineImage(idx)}
+        style={{flex: 1, height: 200, resizeMode: 'contain'}}
+        s></Image>
     </DataTable.Row>
   );
 };
