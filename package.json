@@ -12,6 +12,7 @@
     "build-android-release": "rm -rf ./android/app/src/main/res/raw/ && rm -rf ./android/app/src/main/res/drawable-mdpi/ && cd android && ./gradlew assembleRelease && cd .."
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.18.2",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
     "expo": "^48.0.0",

@@ -1,9 +1,10 @@
 import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
-import Constants from '../Global/Constants';
+import Constants from '../../Global/Constants';
 import {forwardRef, useImperativeHandle, useState, useEffect} from 'react';
 import {Audio} from 'expo-av';
 import {AntDesign} from '@expo/vector-icons';
-import AppColors from '../Global/AppColors';
+import AppColors from '../../Global/AppColors';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const BottomBar = forwardRef((props, ref) => {
   const [buttonDisable, setButtonDisable] = useState(false);
@@ -16,7 +17,7 @@ const BottomBar = forwardRef((props, ref) => {
 
   const playSound = async () => {
     let {sound} = await Audio.Sound.createAsync(
-      require('../assets/sounds/SpinPlay.mp3'),
+      require('../../assets/sounds/SpinPlay.mp3'),
     );
     setSound(sound);
 
@@ -31,6 +32,15 @@ const BottomBar = forwardRef((props, ref) => {
         }
       : undefined;
   }, [sound]);
+
+  useEffect(() => {
+    AsyncStorage.getItem('credits').then(value => {
+      if (value !== null) {
+        console.log('credits retrieved:', value);
+        setCredits(parseInt(value));
+      }
+    });
+  }, []);
 
   const adjustLineIndex = goRight => {
     if (lineIndex >= Paylines.length - 1 && goRight) {
@@ -59,12 +69,12 @@ const BottomBar = forwardRef((props, ref) => {
   }));
 
   const handleButtonPress = () => {
-    if (credits>=Paylines[lineIndex]) {
-    setCredits(credits - Paylines[lineIndex]);
-    props.getPaylineState.current = Paylines[lineIndex];
-    playSound();
-    setButtonDisable(true);
-    props.spinreel();
+    if (credits >= Paylines[lineIndex]) {
+      setCredits(credits - Paylines[lineIndex]);
+      props.getPaylineState.current = Paylines[lineIndex];
+      playSound();
+      setButtonDisable(true);
+      props.spinreel();
     }
   };
 

@@ -1,6 +1,6 @@
-import { View, Image, StyleSheet } from 'react-native';
-import { useState, forwardRef, useImperativeHandle } from 'react';
-import {TileImages} from '../Global/Images';
+import {View, Image, StyleSheet} from 'react-native';
+import {useState, forwardRef, useImperativeHandle} from 'react';
+import {TileImages} from '../../Global/Images';
 
 const Tile = forwardRef((props, ref) => {
   const [active, setActive] = useState(true);

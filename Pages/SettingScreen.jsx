@@ -16,7 +16,7 @@ const SettingScreen = ({navigation}) => {
         alignItems: 'center',
         zIndex: 1,
       }}
-      onPress={() => navigation.navigate('GameScreen')}>
+      onPress={() => navigation.goBack('GameScreen')}>
       <Ionicons name="settings-outline" size={24} color="black" />
     </Pressable>
   );

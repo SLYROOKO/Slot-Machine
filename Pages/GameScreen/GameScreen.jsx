@@ -6,10 +6,10 @@ import {
   StatusBar,
   Pressable,
 } from 'react-native';
-import Constants from '../Global/Constants';
+import Constants from '../../Global/Constants';
 import {useRef} from 'react';
-import BottomBar from '../Components/BottomBar';
-import Reel from '../Components/Reel';
+import BottomBar from './BottomBar';
+import Reel from './Reel';
 import {Entypo, Ionicons} from '@expo/vector-icons';
 
 const GameScreen = ({navigation}) => {
@@ -223,7 +223,7 @@ const GameScreen = ({navigation}) => {
   return (
     <SafeAreaView>
       <ImageBackground
-        source={require('../assets/images/background/b11.jpg')}
+        source={require('../../assets/images/background/b11.jpg')}
         resizeMode="stretch"
         style={styles.imageBackground}>
         {infoButton}
