@@ -1,5 +1,7 @@
 # Slot-machine game using react native
 
+![ScreenShot](/Slot-Machine/assets/ScreenShot.png?raw=true "Employee Data title")
+
 ## Development
 
 ```npx react-native run-ios```
@@ -32,6 +34,7 @@
    3. credit insert sound
 6. Second attempt at aesthetics
    1. [Color Wheel](https://www.canva.com/colors/color-wheel)
+   2. change background to high res images
 7. Add tests for payline logic
     1. Config Jest
 8. Add Wildcard Logic to payouts

@@ -59,11 +59,13 @@ const BottomBar = forwardRef((props, ref) => {
   }));
 
   const handleButtonPress = () => {
+    if (credits>=Paylines[lineIndex]) {
     setCredits(credits - Paylines[lineIndex]);
     props.getPaylineState.current = Paylines[lineIndex];
     playSound();
     setButtonDisable(true);
     props.spinreel();
+    }
   };
 
   const styles = StyleSheet.create({
@@ -73,7 +75,17 @@ const BottomBar = forwardRef((props, ref) => {
       // fontFamily: 'ARCADECLASSIC', //not working fix in future
       textAlignVertical: 'center',
       textAlign: 'center',
-      borderRadius: 10,
+    },
+    playButton: {
+      marginHorizontal: Constants.windowWidth * 0.01,
+      marginVertical: Constants.windowHeight * 0.01,
+      flex: 1,
+      height: Constants.windowHeight * 0.1,
+      backgroundColor:
+        buttonDisable || credits < Paylines[lineIndex]
+          ? 'gray'
+          : AppColors.tenColor,
+      borderRadius: 20,
     },
     infoContainer: {
       flexDirection: 'row',
@@ -90,7 +102,7 @@ const BottomBar = forwardRef((props, ref) => {
       marginHorizontal: Constants.windowWidth * 0.01,
       flex: 1,
       justifyContent: 'space-evenly',
-      borderRadius: 10,
+      borderRadius: 20,
     },
     infoText: {
       fontSize: Constants.windowHeight * 0.05,
@@ -129,36 +141,14 @@ const BottomBar = forwardRef((props, ref) => {
       <View style={styles.infoBox}>
         <Text style={styles.infoText}>Free Spins {freeSpins} </Text>
       </View>
-
-      {buttonDisable || credits < Paylines[lineIndex] ? (
-        <TouchableOpacity
-          style={{
-            marginHorizontal: Constants.windowWidth * 0.01,
-            marginVertical: Constants.windowHeight * 0.01,
-            flex: 1,
-            height: Constants.windowHeight * 0.1,
-            backgroundColor: 'gray',
-            borderRadius: 10,
-          }}>
-          <Text style={styles.playButtonText}>SPIN</Text>
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          style={{
-            marginHorizontal: Constants.windowWidth * 0.01,
-            marginVertical: Constants.windowHeight * 0.01,
-            flex: 1,
-            height: Constants.windowHeight * 0.1,
-            backgroundColor: AppColors.tenColor,
-            borderRadius: 10,
-          }}
-          disabled={buttonDisable}
-          onPress={() => {
-            handleButtonPress();
-          }}>
-          <Text style={styles.playButtonText}>SPIN</Text>
-        </TouchableOpacity>
-      )}
+      <TouchableOpacity
+        style={styles.playButton}
+        disabled={buttonDisable}
+        onPress={() => {
+          handleButtonPress();
+        }}>
+        <Text style={styles.playButtonText}>SPIN</Text>
+      </TouchableOpacity>
     </View>
   );
 });

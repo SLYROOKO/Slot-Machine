@@ -1,4 +1,4 @@
-const TileImages = {
+export const TileImages = {
   Ana: require('../assets/images/Slot_Icons/Ana_Tile.png'),
   Dva: require('../assets/images/Slot_Icons/Dva_Tile.png'),
   Genji: require('../assets/images/Slot_Icons/Genji_Tile.png'),
@@ -7,7 +7,7 @@ const TileImages = {
   Mercy: require('../assets/images/Slot_Icons/Mercy_Tile.png'),
   Reinhardt: require('../assets/images/Slot_Icons/Reinhardt_Tile.png'),
   Sombra: require('../assets/images/Slot_Icons/Sombra_Tile.png'),
-  Widow:  require('../assets/images/Slot_Icons/Widow_Tile.png'),
+  Widow: require('../assets/images/Slot_Icons/Widow_Tile.png'),
   WreckingBall: require('../assets/images/Slot_Icons/WreckingBall_Tile.png'),
   Zen: require('../assets/images/Slot_Icons/Zen_Tile.png'),
   BlackLogo: require('../assets/images/Slot_Icons/BlackLogo_Tile.png'),
@@ -17,4 +17,25 @@ const TileImages = {
   LootBox: require('../assets/images/Slot_Icons/LootBox_Tile.png'),
 };
 
-export default TileImages;
+export const PaylineImages = {
+  1: require('../assets/images/Paylines/p1.png'),
+  2: require('../assets/images/Paylines/p2.png'),
+  3: require('../assets/images/Paylines/p3.png'),
+  4: require('../assets/images/Paylines/p4.png'),
+  5: require('../assets/images/Paylines/p5.png'),
+  6: require('../assets/images/Paylines/p6.png'),
+  7: require('../assets/images/Paylines/p7.png'),
+  8: require('../assets/images/Paylines/p8.png'),
+  9: require('../assets/images/Paylines/p9.png'),
+  10: require('../assets/images/Paylines/p10.png'),
+  11: require('../assets/images/Paylines/p11.png'),
+  12: require('../assets/images/Paylines/p12.png'),
+  13: require('../assets/images/Paylines/p13.png'),
+  14: require('../assets/images/Paylines/p14.png'),
+  15: require('../assets/images/Paylines/p15.png'),
+  16: require('../assets/images/Paylines/p16.png'),
+  17: require('../assets/images/Paylines/p17.png'),
+  18: require('../assets/images/Paylines/p18.png'),
+  19: require('../assets/images/Paylines/p19.png'),
+  20: require('../assets/images/Paylines/p20.png'),
+};
