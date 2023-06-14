@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     alignItems: 'center',
     paddingHorizontal: 10,
-    backgroundColor: AppColors.sixtyColor,
+    backgroundColor: 'black',
     borderRadius: 10,
     borderColor: 'black',
     borderWidth: 2,

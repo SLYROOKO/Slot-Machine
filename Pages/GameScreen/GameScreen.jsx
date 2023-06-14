@@ -2,7 +2,6 @@ import {
   SafeAreaView,
   View,
   StyleSheet,
-  ImageBackground,
   StatusBar,
   Pressable,
 } from 'react-native';
@@ -11,6 +10,7 @@ import {useRef} from 'react';
 import BottomBar from './BottomBar';
 import Reel from './Reel';
 import {Entypo, Ionicons} from '@expo/vector-icons';
+import AppColors from '../../Global/AppColors';
 
 const GameScreen = ({navigation}) => {
   const reelControllers = [];
@@ -223,21 +223,16 @@ const GameScreen = ({navigation}) => {
 
   return (
     <SafeAreaView>
-      <ImageBackground
-        source={require('../../assets/images/background/b11.jpg')}
-        resizeMode="stretch"
-        style={styles.imageBackground}>
-        {infoButton}
-        {/* {settingsButton} */}
-        <View style={styles.container}>
-          <View style={styles.reelContainer}>{ReelContainer}</View>
-          <BottomBar
-            spinreel={handleSpin}
-            ref={bottomBarRef}
-            getPaylineState={paylineState}
-          />
-        </View>
-      </ImageBackground>
+      {infoButton}
+      {/* {settingsButton} */}
+      <View style={styles.container}>
+        <View style={styles.reelContainer}>{ReelContainer}</View>
+        <BottomBar
+          spinreel={handleSpin}
+          ref={bottomBarRef}
+          getPaylineState={paylineState}
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -246,15 +241,13 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     justifyContent: 'space-evenly',
+    backgroundColor: AppColors.Primary,
+    height: Constants.windowHeight - StatusBar.currentHeight,
   },
   reelContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     height: Constants.reelContainerHeight,
-  },
-  imageBackground: {
-    justifyContent: 'center',
-    height: Constants.windowHeight - StatusBar.currentHeight,
   },
 });
 
