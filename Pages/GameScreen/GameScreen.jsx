@@ -83,6 +83,7 @@ const GameScreen = ({navigation}) => {
       if (firstTile != 13) {
         let paylineIndex = 0;
         while (
+          paylineIndex < 5 &&
           reelState[Constants.Paylines[i][paylineIndex][1]][
             Constants.Paylines[i][paylineIndex][0]
           ] == firstTile

@@ -58,6 +58,7 @@ const BottomBar = forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     addCredits: amount => {
+      AsyncStorage.setItem('credits', (credits + amount).toString());
       setCredits(credits + amount);
     },
     addFreeSpins: amount => {
