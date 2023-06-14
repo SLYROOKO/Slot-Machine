@@ -1,9 +1,10 @@
-import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
-import Constants from '../Global/Constants';
+import {StyleSheet, TouchableOpacity, Text, View, Modal} from 'react-native';
+import Constants from '../../Global/Constants';
 import {forwardRef, useImperativeHandle, useState, useEffect} from 'react';
 import {Audio} from 'expo-av';
 import {AntDesign} from '@expo/vector-icons';
-import AppColors from '../Global/AppColors';
+import AppColors from '../../Global/AppColors';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const BottomBar = forwardRef((props, ref) => {
   const [buttonDisable, setButtonDisable] = useState(false);
@@ -11,12 +12,13 @@ const BottomBar = forwardRef((props, ref) => {
   const Paylines = [1, 5, 9, 15, 20];
   const [lineIndex, setLineIndex] = useState(4);
   const [freeSpins, setFreeSpins] = useState(0);
+  const [modalVisible, setModalVisible] = useState(true);
 
   const [sound, setSound] = useState();
 
   const playSound = async () => {
     let {sound} = await Audio.Sound.createAsync(
-      require('../assets/sounds/SpinPlay.mp3'),
+      require('../../assets/sounds/SpinPlay.mp3'),
     );
     setSound(sound);
 
@@ -31,6 +33,15 @@ const BottomBar = forwardRef((props, ref) => {
         }
       : undefined;
   }, [sound]);
+
+  useEffect(() => {
+    AsyncStorage.getItem('credits').then(value => {
+      if (value !== null) {
+        console.log('credits retrieved:', value);
+        setCredits(parseInt(value));
+      }
+    });
+  }, []);
 
   const adjustLineIndex = goRight => {
     if (lineIndex >= Paylines.length - 1 && goRight) {
@@ -48,6 +59,7 @@ const BottomBar = forwardRef((props, ref) => {
 
   useImperativeHandle(ref, () => ({
     addCredits: amount => {
+      AsyncStorage.setItem('credits', (credits + amount).toString());
       setCredits(credits + amount);
     },
     addFreeSpins: amount => {
@@ -59,12 +71,12 @@ const BottomBar = forwardRef((props, ref) => {
   }));
 
   const handleButtonPress = () => {
-    if (credits>=Paylines[lineIndex]) {
-    setCredits(credits - Paylines[lineIndex]);
-    props.getPaylineState.current = Paylines[lineIndex];
-    playSound();
-    setButtonDisable(true);
-    props.spinreel();
+    if (credits >= Paylines[lineIndex]) {
+      setCredits(credits - Paylines[lineIndex]);
+      props.getPaylineState.current = Paylines[lineIndex];
+      playSound();
+      setButtonDisable(true);
+      props.spinreel();
     }
   };
 
@@ -84,7 +96,7 @@ const BottomBar = forwardRef((props, ref) => {
       backgroundColor:
         buttonDisable || credits < Paylines[lineIndex]
           ? 'gray'
-          : AppColors.tenColor,
+          : AppColors.Tertiary,
       borderRadius: 20,
     },
     infoContainer: {
@@ -97,7 +109,7 @@ const BottomBar = forwardRef((props, ref) => {
     infoBox: {
       flexDirection: 'row',
       marginVertical: Constants.windowHeight * 0.01,
-      backgroundColor: AppColors.thirtyColor,
+      backgroundColor: AppColors.Secondary,
       height: Constants.windowHeight * 0.1,
       marginHorizontal: Constants.windowWidth * 0.01,
       flex: 1,
@@ -106,21 +118,96 @@ const BottomBar = forwardRef((props, ref) => {
     },
     infoText: {
       fontSize: Constants.windowHeight * 0.05,
-      color: AppColors.sixtyColor,
+      color: AppColors.Primary,
       //fontFamily: 'ARCADECLASSIC', //not working fix in future
       textAlignVertical: 'center',
       textAlign: 'center',
+      color: 'black',
     },
     lineSelector: {
       justifyContent: 'center',
+    },
+    modal: {
+      flex: 1,
+      marginHorizontal: Constants.windowWidth * 0.3,
+      marginVertical: Constants.windowHeight * 0.1,
+      backgroundColor: AppColors.Secondary,
+      borderRadius: 20,
+      padding: 35,
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
+      alignSelf: 'center',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: Constants.windowWidth * 0.2,
+    },
+    modalButton: {
+      flex: 1,
+      backgroundColor: AppColors.Tertiary,
+      borderRadius: 20,
+      elevation: 6,
+      marginVertical: 10,
+      width: '100%',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    modalButtonText: {
+      color: 'black',
+      fontSize: Constants.windowHeight * 0.08,
+      textAlignVertical: 'center',
+      textAlign: 'center',
+      fontWeight: 'bold',
     },
   });
 
   return (
     <View style={styles.infoContainer}>
-      <View style={styles.infoBox}>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.modal}>
+          <TouchableOpacity style={styles.modalButton}
+            onPress={() => {
+              AsyncStorage.setItem('credits', (credits + 100).toString());
+              setCredits(credits + 100);
+            }}>
+            <Text>Buy 100</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.modalButton}
+            onPress={() => {
+              AsyncStorage.setItem('credits', (credits + 500).toString());
+              setCredits(credits + 500);
+            }}>
+            <Text>Buy 500</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.modalButton}
+            onPress={() => {
+              AsyncStorage.setItem('credits', (credits + 1000).toString());
+              setCredits(credits + 1000);
+            }}>
+            <Text>Buy 1000</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.modalButton} onPress={() => setModalVisible(false)}>
+            <Text>Close</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
+      <TouchableOpacity
+        disabled={buttonDisable}
+        style={styles.infoBox}
+        onPress={() => setModalVisible(true)}>
         <Text style={styles.infoText}>Credits {credits}</Text>
-      </View>
+      </TouchableOpacity>
       <View style={styles.infoBox}>
         <TouchableOpacity
           style={styles.lineSelector}

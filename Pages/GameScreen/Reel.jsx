@@ -1,9 +1,9 @@
 import {StyleSheet, View, Animated, Easing} from 'react-native';
 import Tile from './Tile';
-import Constants from '../Global/Constants';
+import Constants from '../../Global/Constants';
 import {forwardRef, useEffect, useImperativeHandle, useRef} from 'react';
 import {Audio} from 'expo-av';
-import AppColors from '../Global/AppColors';
+import AppColors from '../../Global/AppColors';
 
 const Reel = forwardRef((props, reference) => {
   const resultStore = useRef(0);
@@ -30,7 +30,7 @@ const Reel = forwardRef((props, reference) => {
 
   const playSound = async () => {
     let {sound} = await Audio.Sound.createAsync(
-      require('../assets/sounds/5_4_3_2_1.mp3'),
+      require('../../assets/sounds/5_4_3_2_1.mp3'),
       null,
       handleSoundUnload,
     );
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     alignItems: 'center',
     paddingHorizontal: 10,
-    backgroundColor: AppColors.sixtyColor,
+    backgroundColor: 'black',
     borderRadius: 10,
     borderColor: 'black',
     borderWidth: 2,

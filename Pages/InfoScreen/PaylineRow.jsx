@@ -1,6 +1,6 @@
 import {DataTable} from 'react-native-paper';
 import {StyleSheet, Image} from 'react-native';
-import {PaylineImages} from '../Global/Images';
+import {PaylineImages} from '../../Global/Images';
 
 const PaylineRow = ({idx}) => {
   const getPaylineImage = idx => {

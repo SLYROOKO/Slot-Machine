@@ -1,7 +1,7 @@
 import {DataTable} from 'react-native-paper';
 import {StyleSheet, Image} from 'react-native';
-import {TileImages} from '../Global/Images';
-import Constants from '../Global/Constants';
+import {TileImages} from '../../Global/Images';
+import Constants from '../../Global/Constants';
 
 const PayoutRow = ({idx, obj}) => {
   const getTileImage = () => {

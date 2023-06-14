@@ -8,15 +8,15 @@ import {
 } from 'react-native';
 import {Entypo} from '@expo/vector-icons';
 import {DataTable} from 'react-native-paper';
-import PayoutRow from '../Components/PayoutRow';
-import PaylineRow from '../Components/PaylineRow';
-import Constants from '../Global/Constants';
+import PayoutRow from './PayoutRow';
+import PaylineRow from './PaylineRow';
+import Constants from '../../Global/Constants';
 
 const InfoScreen = ({navigation}) => {
   const infoButton = (
     <Pressable
       style={styles.infoButton}
-      onPress={() => navigation.navigate('GameScreen')}>
+      onPress={() => navigation.goBack('GameScreen')}>
       <Entypo name="info" size={24} color="black" />
     </Pressable>
   );
@@ -24,9 +24,8 @@ const InfoScreen = ({navigation}) => {
   const paylineRows = [];
   //create 20
   for (let i = 0; i < 20; i++) {
-    paylineRows.push(<PaylineRow idx={i} key={i}/>);
+    paylineRows.push(<PaylineRow idx={i} key={i} />);
   }
-
 
   return (
     <SafeAreaView>
@@ -34,9 +33,7 @@ const InfoScreen = ({navigation}) => {
       <ScrollView>
         <View style={styles.scrollView}>
           <Text style={styles.headers}>Paylines</Text>
-          <DataTable style={{marginBottom: 20}}>
-            {paylineRows}
-          </DataTable>
+          <DataTable style={{marginBottom: 20}}>{paylineRows}</DataTable>
           <Text style={styles.headers}>Payouts</Text>
           <DataTable.Header>
             <DataTable.Title>Tile</DataTable.Title>
