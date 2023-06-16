@@ -23,11 +23,18 @@
    1. Change the background color during free spins
    2. Auto Spin during free spins
    3. 3x multiplier during free spins
-3. Sound Effects
+3. Reverse Spin Direction
+4. Sound Effects
    1. if win with a character, play the character sound
    2. jackpot sound
    3. credit insert sound
-4. Add tests for payline logic
+5. Refactor Info Page
+   1. Try Native Flatlist instead of Library
+   2. Add Description for free plays on info page
+   3. *3x multiplier during free spins*
+   4. how to get free spins
+   5. Loot bot multiplier disclaimer
+6. Mute Music Button
+7. Mute Sound Effects Button
+8. Add tests for payline logic
     1. Config Jest
-5. Settings button top left
-    1. Add Settings Screen

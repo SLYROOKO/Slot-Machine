@@ -20,19 +20,20 @@ const GameScreen = ({navigation}) => {
   }
   const winningPaylines = useRef([]);
 
-  const handleSpin = () => {
+  const handleSpin = (freeSpin) => {
+    //Make Changes for FreeSpin here TBD// visual effects// background change?
     reelControllers.forEach(reelController => {
       reelController.handleReelSpin();
     });
     setTimeout(() => {
-      handlePayout();
+      handlePayout(freeSpin);
     }, Constants.reelSpinDurationDelay * 5 + Constants.reelSpinMinDuration);
   };
 
   const bottomBarRef = useRef();
   const paylineState = useRef(0);
 
-  const handlePayout = () => {
+  const handlePayout = (freeSpin) => {
     winningPaylines.current = [];
     let totalPayout = 0;
     let reelState = [
@@ -58,6 +59,10 @@ const GameScreen = ({navigation}) => {
       totalPayout += calculatePayout(reelState, 15, 20);
     }
     totalPayout += calculateLootBoxPayout(reelState);
+
+    if (freeSpin) {
+      totalPayout *=3;
+    }
 
     bottomBarRef.current.addCredits(totalPayout);
     highlightWinningPaylines(0);
@@ -126,7 +131,6 @@ const GameScreen = ({navigation}) => {
       winningPaylines.current.push(lootBoxIndexes);
     }
     if (count > 2) {
-      //set freespins +=15
       bottomBarRef.current.addFreeSpins(15);
     }
     return payout;
@@ -135,6 +139,11 @@ const GameScreen = ({navigation}) => {
   const highlightWinningPaylines = winningLineIndex => {
     if (!winningPaylines.current.length) {
       bottomBarRef.current.setPlayButtonDisable(false);
+      if (bottomBarRef.current.getFreeSpins() > 0) {
+        handleFreeSpin();
+      } else {
+        handleAutoSpin();
+      }
       return;
     }
 
@@ -149,6 +158,11 @@ const GameScreen = ({navigation}) => {
         reelController.setWinningLines([1, 1, 1]);
       });
       bottomBarRef.current.setPlayButtonDisable(false);
+      if (bottomBarRef.current.getFreeSpins() > 0) {
+        handleFreeSpin();
+      } else {
+        handleAutoSpin();
+      }
       return;
     }
 
@@ -169,6 +183,18 @@ const GameScreen = ({navigation}) => {
     setTimeout(() => {
       highlightWinningPaylines(winningLineIndex + 1);
     }, Constants.winningPaylinesHighlightDuration);
+  };
+
+  const handleAutoSpin = () => {
+    if (bottomBarRef.current.getAutoSpinState()) {
+      bottomBarRef.current.spinController(false);
+    }
+  };
+
+  const handleFreeSpin = () => {
+    if (bottomBarRef.current.getFreeSpins() > 0) {
+      bottomBarRef.current.spinController(true);
+    }
   };
 
   const ReelContainer = [];
