@@ -75,10 +75,6 @@ const Reel = forwardRef((props, reference) => {
   };
 
   const handleReelSpin = () => {
-    //turn on all tile highlights
-    tileRefs.forEach(tile => {
-      tile.highlight(true);
-    });
 
     const result =
       Math.floor(
@@ -97,7 +93,7 @@ const Reel = forwardRef((props, reference) => {
       useNativeDriver: true,
       easing: Easing.inOut(Easing.exp),
     }).start(() => {
-      // play reel click sound
+      // play reel click sound here
       if (props.reelIndex == 0) {
         playSound();
       }

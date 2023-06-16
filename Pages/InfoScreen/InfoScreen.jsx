@@ -22,7 +22,6 @@ const InfoScreen = ({navigation}) => {
   );
 
   const paylineRows = [];
-  //create 20
   for (let i = 0; i < 20; i++) {
     paylineRows.push(<PaylineRow idx={i} key={i} />);
   }
