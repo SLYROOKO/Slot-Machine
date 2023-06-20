@@ -7,8 +7,8 @@ const Constants = {
   numRows: 3,
   numColumns: 5,
   wildCardMutationChance: 0.1,
-  reelRepeatCount: 50, //50 must be at least 1 greater than minimumSpinCycleCount
-  minimumSpinCycleCount: 10, //10
+  reelRepeatCount: 50, // must be at least 1 greater than minimumSpinCycleCount
+  minimumSpinCycleCount: 45, 
   startingCredits: 500,
   reelSpinDurationDelay: 1000,
   reelSpinMinDuration: 8000,

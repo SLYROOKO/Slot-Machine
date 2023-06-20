@@ -38,7 +38,6 @@ const BottomBar = forwardRef((props, ref) => {
   useEffect(() => {
     AsyncStorage.getItem('credits').then(value => {
       if (value !== null) {
-        console.log('credits retrieved:', value);
         setCredits(parseInt(value));
       }
     });
