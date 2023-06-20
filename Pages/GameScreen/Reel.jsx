@@ -3,11 +3,9 @@ import Tile from './Tile';
 import Constants from '../../Global/Constants';
 import {forwardRef, useEffect, useImperativeHandle, useRef} from 'react';
 import {Audio} from 'expo-av';
-import AppColors from '../../Global/AppColors';
 
 const Reel = forwardRef((props, reference) => {
   const resultStore = useRef(0);
-  let scrollPosition = new Animated.Value(0);
 
   //create an array of 13 tiles
   let initialReelTiles = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
@@ -23,6 +21,12 @@ const Reel = forwardRef((props, reference) => {
   for (let i = 0; i < Constants.reelRepeatCount - 1; i++) {
     reelTiles = reelTiles.concat(initialReelTiles);
   }
+
+  const scrollPosition = new Animated.Value(
+    (Constants.reelContainerHeight / Constants.numRows) *
+      -1 *
+      (reelTiles.length - 3),
+  );
 
   let tileRefs = [];
 
@@ -75,18 +79,17 @@ const Reel = forwardRef((props, reference) => {
   };
 
   const handleReelSpin = () => {
-
+    let tileHeight = Constants.reelContainerHeight / Constants.numRows;
     const result =
       Math.floor(
         Math.random() *
           (reelTiles.length -
-            initialReelTiles.length -
-            Constants.minimumSpinCycleCount * initialReelTiles.length),
+            Constants.minimumSpinCycleCount * initialReelTiles.length), //650-10*13=520
       ) +
       Constants.minimumSpinCycleCount * initialReelTiles.length;
 
     Animated.timing(scrollPosition, {
-      toValue: -(result * Constants.reelContainerHeight) / Constants.numRows,
+      toValue: (result - reelTiles.length) * tileHeight,
       duration:
         Constants.reelSpinMinDuration +
         props.reelIndex * Constants.reelSpinDurationDelay, // spin for longer the further to the right the reel is,
@@ -99,15 +102,36 @@ const Reel = forwardRef((props, reference) => {
       }
       // using a trick to make the reel appear to be spinning infinitely
       scrollPosition.setValue(
-        -((result % initialReelTiles.length) * Constants.reelContainerHeight) /
-          Constants.numRows,
+        (-reelTiles.length +
+          initialReelTiles.length +
+          (result % initialReelTiles.length)) *
+          tileHeight,
       );
-      resultStore.current = result % initialReelTiles.length;
+
+      resultStore.current =
+        reelTiles.length -
+        initialReelTiles.length -
+        (result % initialReelTiles.length);
       // return the current reel state
       props.reelState.current = [
-        reelTiles[result % initialReelTiles.length],
-        reelTiles[(result + 1) % initialReelTiles.length],
-        reelTiles[(result + 2) % initialReelTiles.length],
+        reelTiles[
+          reelTiles.length -
+            initialReelTiles.length -
+            (result % initialReelTiles.length)
+        ],
+        reelTiles[
+          reelTiles.length -
+            initialReelTiles.length -
+            (result % initialReelTiles.length) -
+            initialReelTiles.length +
+            1
+        ],
+        reelTiles[
+          reelTiles.length -
+            initialReelTiles.length -
+            (result % initialReelTiles.length) +
+            2
+        ],
       ];
     });
   };
