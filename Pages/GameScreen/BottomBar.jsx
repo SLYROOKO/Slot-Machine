@@ -5,6 +5,7 @@ import {Audio} from 'expo-av';
 import {AntDesign, FontAwesome} from '@expo/vector-icons';
 import AppColors from '../../Global/AppColors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { CountUp } from 'use-count-up'
 
 const BottomBar = forwardRef((props, ref) => {
   const [buttonDisable, setButtonDisable] = useState(false);
@@ -14,6 +15,7 @@ const BottomBar = forwardRef((props, ref) => {
   const [freeSpins, setFreeSpins] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
   const [autoSpin, setAutoSpin] = useState(false);
+  const [lastCredits, setlastCredits] = useState(0);
 
   const [sound, setSound] = useState();
 
@@ -60,6 +62,7 @@ const BottomBar = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     addCredits: amount => {
       AsyncStorage.setItem('credits', (credits + amount).toString());
+      setlastCredits(credits);
       setCredits(credits + amount);
     },
     getFreeSpins: () => {
@@ -88,6 +91,7 @@ const BottomBar = forwardRef((props, ref) => {
     }
 
     if (!freeSpin && credits >= Paylines[lineIndex]) {
+      setlastCredits(credits);
       setCredits(credits - Paylines[lineIndex]);
       props.getPaylineState.current = Paylines[lineIndex];
       playSound();
@@ -141,6 +145,7 @@ const BottomBar = forwardRef((props, ref) => {
           <TouchableOpacity
             style={styles.modalButton}
             onPress={() => {
+              setlastCredits(credits);
               AsyncStorage.setItem('credits', (credits + 100).toString());
               setCredits(credits + 100);
             }}>
@@ -149,6 +154,7 @@ const BottomBar = forwardRef((props, ref) => {
           <TouchableOpacity
             style={styles.modalButton}
             onPress={() => {
+              setlastCredits(credits);
               AsyncStorage.setItem('credits', (credits + 500).toString());
               setCredits(credits + 500);
             }}>
@@ -157,6 +163,7 @@ const BottomBar = forwardRef((props, ref) => {
           <TouchableOpacity
             style={styles.modalButton}
             onPress={() => {
+              setlastCredits(credits);
               AsyncStorage.setItem('credits', (credits + 1000).toString());
               setCredits(credits + 1000);
             }}>
@@ -173,7 +180,7 @@ const BottomBar = forwardRef((props, ref) => {
         disabled={buttonDisable}
         style={styles.infoBox}
         onPress={() => setModalVisible(true)}>
-        <Text style={styles.infoText}>Credits {credits}</Text>
+        <Text style={styles.infoText}>Credits: <CountUp isCounting={true} start={lastCredits} end={credits} duration={1} key={credits}/></Text>
       </TouchableOpacity>
       <View style={styles.infoBox}>
         <TouchableOpacity
