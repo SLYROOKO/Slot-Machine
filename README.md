@@ -12,6 +12,7 @@
 
 - build android debug apk ```npm run build-android-debug```
 - build android release apk```npm run build-android-release```
+- Ios: build after opening in Xcode
 
 ## Todo
 
