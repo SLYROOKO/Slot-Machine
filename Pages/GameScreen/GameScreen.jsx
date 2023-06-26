@@ -11,6 +11,7 @@ import BottomBar from './BottomBar';
 import Reel from './Reel';
 import {Entypo, Ionicons} from '@expo/vector-icons';
 import AppColors from '../../Global/AppColors';
+import Background from './Background';
 
 const GameScreen = ({navigation}) => {
   const reelControllers = [];
@@ -20,7 +21,7 @@ const GameScreen = ({navigation}) => {
   }
   const winningPaylines = useRef([]);
 
-  const handleSpin = (freeSpin) => {
+  const handleSpin = freeSpin => {
     //Make Changes for FreeSpin here TBD// visual effects// background change?
     reelControllers.forEach(reelController => {
       reelController.handleReelSpin();
@@ -31,9 +32,10 @@ const GameScreen = ({navigation}) => {
   };
 
   const bottomBarRef = useRef();
+  const backgroundRef = useRef();
   const paylineState = useRef(0);
 
-  const handlePayout = (freeSpin) => {
+  const handlePayout = freeSpin => {
     winningPaylines.current = [];
     let totalPayout = 0;
     let reelState = [
@@ -61,7 +63,7 @@ const GameScreen = ({navigation}) => {
     totalPayout += calculateLootBoxPayout(reelState);
 
     if (freeSpin) {
-      totalPayout *=3;
+      totalPayout *= 3;
     }
 
     bottomBarRef.current.addCredits(totalPayout);
@@ -130,9 +132,19 @@ const GameScreen = ({navigation}) => {
       payout += Constants.Paytable[13][count] * paylineState.current;
       winningPaylines.current.push(lootBoxIndexes);
     }
-    if (count > 2) {
-      bottomBarRef.current.addFreeSpins(15);
+    if (count > 4) {
+      bottomBarRef.current.addFreeSpins(30);
+      return payout;
     }
+    if (count > 3) {
+      bottomBarRef.current.addFreeSpins(15);
+      return payout;
+    }
+    if (count > 2) {
+      bottomBarRef.current.addFreeSpins(5);
+      return payout;
+    }
+
     return payout;
   };
 
@@ -187,12 +199,14 @@ const GameScreen = ({navigation}) => {
 
   const handleAutoSpin = () => {
     if (bottomBarRef.current.getAutoSpinState()) {
+      backgroundRef.current.setBackground(false);
       bottomBarRef.current.spinController(false);
     }
   };
 
   const handleFreeSpin = () => {
     if (bottomBarRef.current.getFreeSpins() > 0) {
+      backgroundRef.current.setBackground(true);
       bottomBarRef.current.spinController(true);
     }
   };
@@ -252,6 +266,7 @@ const GameScreen = ({navigation}) => {
       {infoButton}
       {/* {settingsButton} */}
       <View style={styles.container}>
+        <Background ref={backgroundRef} />
         <View style={styles.reelContainer}>{ReelContainer}</View>
         <BottomBar
           spinreel={handleSpin}

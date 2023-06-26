@@ -32,4 +32,3 @@
 4. Mute Sound Effects Button
 5. Add tests for payline logic
     1. Config Jest
-

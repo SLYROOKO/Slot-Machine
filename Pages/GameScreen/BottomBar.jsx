@@ -180,7 +180,7 @@ const BottomBar = forwardRef((props, ref) => {
         disabled={buttonDisable}
         style={styles.infoBox}
         onPress={() => setModalVisible(true)}>
-        <Text style={styles.infoText}>Credits: <CountUp isCounting={true} start={lastCredits} end={credits} duration={1} key={credits}/></Text>
+        <Text style={styles.infoText}>Credits: <CountUp isCounting={true} start={lastCredits} end={credits} duration={3} key={credits}/></Text>
       </TouchableOpacity>
       <View style={styles.infoBox}>
         <TouchableOpacity
