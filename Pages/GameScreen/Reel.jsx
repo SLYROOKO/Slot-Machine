@@ -58,6 +58,33 @@ const Reel = forwardRef((props, reference) => {
       : undefined;
   }, [soundRef.current]);
 
+  const reelClickSoundRef = useRef();
+
+  const playReelClickSound = async () => {
+    let {sound} = await Audio.Sound.createAsync(
+      require('../../assets/sounds/ReelClick.mp3'),
+      null,
+      handleSoundUnload2,
+    );
+    sound.setPositionAsync(140);
+    reelClickSoundRef.current = sound;
+    await reelClickSoundRef.current.playAsync();
+  };
+
+  const handleSoundUnload2 = state => {
+    if (state.didJustFinish) {
+      reelClickSoundRef.current.unloadAsync();
+    }
+  };
+
+  useEffect(() => {
+    return reelClickSoundRef.current
+      ? () => {
+          reelClickSoundRef.current.unloadAsync();
+        }
+      : undefined;
+  }, [reelClickSoundRef.current]);
+
   useImperativeHandle(reference, () => ({
     handleReelSpin,
     setWinningLines,
@@ -84,7 +111,7 @@ const Reel = forwardRef((props, reference) => {
       Math.floor(
         Math.random() *
           (reelTiles.length -
-            Constants.minimumSpinCycleCount * initialReelTiles.length), //650-10*13=520
+            Constants.minimumSpinCycleCount * initialReelTiles.length),
       ) +
       Constants.minimumSpinCycleCount * initialReelTiles.length;
 
@@ -96,7 +123,7 @@ const Reel = forwardRef((props, reference) => {
       useNativeDriver: true,
       easing: Easing.inOut(Easing.exp),
     }).start(() => {
-      // play reel click sound here
+      playReelClickSound();
       if (props.reelIndex == 0) {
         playSound();
       }

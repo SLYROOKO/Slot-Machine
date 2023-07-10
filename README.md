@@ -31,5 +31,3 @@
    5. Loot bot multiplier disclaimer
 3. Mute Music Button
 4. Mute Sound Effects Button
-5. Add tests for payline logic
-    1. Config Jest
