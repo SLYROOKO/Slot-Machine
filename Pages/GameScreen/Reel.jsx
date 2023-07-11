@@ -66,7 +66,7 @@ const Reel = forwardRef((props, reference) => {
       null,
       handleSoundUnload2,
     );
-    sound.setPositionAsync(140);
+    sound.setPositionAsync(142);
     reelClickSoundRef.current = sound;
     await reelClickSoundRef.current.playAsync();
   };

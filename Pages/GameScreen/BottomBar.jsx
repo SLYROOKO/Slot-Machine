@@ -5,7 +5,7 @@ import {Audio} from 'expo-av';
 import {AntDesign, FontAwesome} from '@expo/vector-icons';
 import AppColors from '../../Global/AppColors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { CountUp } from 'use-count-up'
+import {CountUp} from 'use-count-up';
 
 const BottomBar = forwardRef((props, ref) => {
   const [buttonDisable, setButtonDisable] = useState(false);
@@ -17,25 +17,55 @@ const BottomBar = forwardRef((props, ref) => {
   const [autoSpin, setAutoSpin] = useState(false);
   const [lastCredits, setlastCredits] = useState(0);
 
-  const [sound, setSound] = useState();
+  const [music, setSound] = useState();
+  const [freePlayMusic, setFreePlayMusic] = useState();
 
   const playSound = async () => {
     let {sound} = await Audio.Sound.createAsync(
       require('../../assets/sounds/SpinPlay.mp3'),
     );
     setSound(sound);
-
     sound.setVolumeAsync(0.1);
     await sound.playAsync();
   };
 
   useEffect(() => {
-    return sound
+    return music
       ? () => {
-          sound.unloadAsync();
+          music.unloadAsync();
         }
       : undefined;
-  }, [sound]);
+  }, [music]);
+
+  const playFreeSpinSoundHelper = async () => {
+    if (freePlayMusic) {
+      freePlayMusic.getStatusAsync().then(status => {
+        if (status.isPlaying == false) {
+          playFreeSpinSound();
+        }
+      });
+    } else {
+      playFreeSpinSound();
+    }
+  };
+
+  const playFreeSpinSound = async () => {
+    let {sound} = await Audio.Sound.createAsync(
+      require('../../assets/sounds/FreePlay.mp3'),
+    );
+    setFreePlayMusic(sound);
+    sound.setVolumeAsync(0.1);
+    sound.setIsLoopingAsync(true);
+    await sound.playAsync();
+  };
+
+  useEffect(() => {
+    return freePlayMusic
+      ? () => {
+          freePlayMusic.unloadAsync();
+        }
+      : undefined;
+  }, [freePlayMusic]);
 
   useEffect(() => {
     AsyncStorage.getItem('credits').then(value => {
@@ -80,16 +110,33 @@ const BottomBar = forwardRef((props, ref) => {
     spinController: freeSpin => {
       handleButtonPress(freeSpin);
     },
+    stopFreePlayMusic: () => {
+      fadeoutMusic();
+    },
   }));
+
+  const fadeoutMusic = async () => {
+    if (freePlayMusic) {
+      freePlayMusic.getStatusAsync().then(status => {
+        if (status.volume < 0.01) {
+          freePlayMusic.unloadAsync();
+        } else {
+          setTimeout(() => {
+            freePlayMusic.setVolumeAsync(status.volume - 0.005);
+            fadeoutMusic();
+          }, 200);
+        }
+      });
+    }
+  };
 
   const handleButtonPress = freeSpin => {
     if (freeSpin) {
       setFreeSpins(freeSpins - 1);
-      playSound(); // swap this with the sound for free spins next branch
+      playFreeSpinSoundHelper();
       setButtonDisable(true);
       props.spinreel(freeSpin);
     }
-
     if (!freeSpin && credits >= Paylines[lineIndex]) {
       setlastCredits(credits);
       setCredits(credits - Paylines[lineIndex]);
@@ -128,7 +175,7 @@ const BottomBar = forwardRef((props, ref) => {
         },
       ]}
       onPress={() => setAutoSpin(true)}>
-      <Text style={{fontWeight:'bold'}}>Auto</Text>
+      <Text style={{fontWeight: 'bold'}}>Auto</Text>
     </TouchableOpacity>
   );
 
@@ -180,7 +227,16 @@ const BottomBar = forwardRef((props, ref) => {
         disabled={buttonDisable}
         style={styles.infoBox}
         onPress={() => setModalVisible(true)}>
-        <Text style={styles.infoText}>Credits: <CountUp isCounting={true} start={lastCredits} end={credits} duration={3} key={credits}/></Text>
+        <Text style={styles.infoText}>
+          Credits: 
+          <CountUp
+            isCounting={true}
+            start={lastCredits}
+            end={credits}
+            duration={3}
+            key={credits}
+          />
+        </Text>
       </TouchableOpacity>
       <View style={styles.infoBox}>
         <TouchableOpacity

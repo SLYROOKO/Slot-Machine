@@ -21,8 +21,6 @@
    2. jackpot sound
       1. define a jackpot
    3. credit insert sound
-   4. free spin music
-   5. reel stop sound
 2. Refactor Info Page
    1. Try Native Flatlist instead of Library
    2. Add Description for free plays on info page

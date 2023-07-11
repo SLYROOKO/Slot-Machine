@@ -9,7 +9,7 @@ import Constants from '../../Global/Constants';
 import {useRef} from 'react';
 import BottomBar from './BottomBar';
 import Reel from './Reel';
-import {Entypo, Ionicons} from '@expo/vector-icons';
+import {Entypo} from '@expo/vector-icons';
 import AppColors from '../../Global/AppColors';
 import Background from './Background';
 
@@ -65,7 +65,6 @@ const GameScreen = ({navigation}) => {
     if (freeSpin) {
       totalPayout *= 3;
     }
-
     bottomBarRef.current.addCredits(totalPayout);
     highlightWinningPaylines(0);
 
@@ -198,8 +197,9 @@ const GameScreen = ({navigation}) => {
   };
 
   const handleAutoSpin = () => {
+    backgroundRef.current.setBackground(false);
+    bottomBarRef.current.stopFreePlayMusic();
     if (bottomBarRef.current.getAutoSpinState()) {
-      backgroundRef.current.setBackground(false);
       bottomBarRef.current.spinController(false);
     }
   };
@@ -242,29 +242,9 @@ const GameScreen = ({navigation}) => {
     </Pressable>
   );
 
-  const settingsButton = (
-    <Pressable
-      style={{
-        position: 'absolute',
-        top: 10,
-        left: 10,
-        width: 40,
-        height: 40,
-        backgroundColor: 'red',
-        borderRadius: 50,
-        justifyContent: 'center',
-        alignItems: 'center',
-        zIndex: 1,
-      }}
-      onPress={() => navigation.navigate('SettingScreen')}>
-      <Ionicons name="settings-outline" size={24} color="black" />
-    </Pressable>
-  );
-
   return (
     <SafeAreaView>
       {infoButton}
-      {/* {settingsButton} */}
       <View style={styles.container}>
         <Background ref={backgroundRef} />
         <View style={styles.reelContainer}>{ReelContainer}</View>
