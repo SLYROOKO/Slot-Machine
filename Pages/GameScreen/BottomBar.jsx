@@ -111,24 +111,9 @@ const BottomBar = forwardRef((props, ref) => {
       handleButtonPress(freeSpin);
     },
     stopFreePlayMusic: () => {
-      fadeoutMusic();
+      freePlayMusic.stopAsync();
     },
   }));
-
-  const fadeoutMusic = async () => {
-    if (freePlayMusic) {
-      freePlayMusic.getStatusAsync().then(status => {
-        if (status.volume < 0.01) {
-          freePlayMusic.unloadAsync();
-        } else {
-          setTimeout(() => {
-            freePlayMusic.setVolumeAsync(status.volume - 0.005);
-            fadeoutMusic();
-          }, 200);
-        }
-      });
-    }
-  };
 
   const handleButtonPress = freeSpin => {
     if (freeSpin) {

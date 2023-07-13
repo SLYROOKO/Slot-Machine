@@ -63,7 +63,7 @@ const GameScreen = ({navigation}) => {
     totalPayout += calculateLootBoxPayout(reelState);
 
     if (freeSpin) {
-      totalPayout *= 3;
+      totalPayout *= 2;
     }
     bottomBarRef.current.addCredits(totalPayout);
     highlightWinningPaylines(0);
