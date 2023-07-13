@@ -42,7 +42,8 @@ const BottomBar = forwardRef((props, ref) => {
     if (freePlayMusic) {
       freePlayMusic.getStatusAsync().then(status => {
         if (status.isPlaying == false) {
-          playFreeSpinSound();
+          sound.setVolumeAsync(0.1);
+          freePlayMusic.playAsync();
         }
       });
     } else {
@@ -128,8 +129,8 @@ const BottomBar = forwardRef((props, ref) => {
     spinController: freeSpin => {
       handleButtonPress(freeSpin);
     },
-    stopFreePlayMusic: () => {
-      freePlayMusic.stopAsync();
+    stopFreePlayMusic: async () => {
+      freePlayMusic?.stopAsync();
     },
   }));
 
@@ -150,7 +151,7 @@ const BottomBar = forwardRef((props, ref) => {
     }
   };
 
-  const buyCredits= (increase) => {
+  const buyCredits = increase => {
     setlastCredits(credits);
     setCredits(credits + increase);
     AsyncStorage.setItem('credits', (credits + increase).toString());
@@ -232,7 +233,7 @@ const BottomBar = forwardRef((props, ref) => {
         style={styles.infoBox}
         onPress={() => setModalVisible(true)}>
         <Text style={styles.infoText}>
-          Credits: 
+          Credits:
           <CountUp
             isCounting={true}
             start={lastCredits}
