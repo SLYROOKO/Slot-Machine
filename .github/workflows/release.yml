@@ -11,20 +11,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: install npm dependencies
+      - name: INTALL NODE DEPENDENCIES
         run: npm install --legacy-peer-deps
 
-      - name: remove duplicate assets
+      - name: REMOVE DUPLICATE RESOURCES
         run: rm -rf ./android/app/src/main/res/raw/ && rm -rf ./android/app/src/main/res/drawable-mdpi/
 
-      - name: Build Android APK artifact
+      - name: BUILD ANDROID APK ARTIFACT
         run: cd android && ./gradlew assembleRelease
 
-      - name: date
+      - name: GET DATE
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
 
-      - name: create_release
+      - name: CREATE RELEASE
         uses: actions/create-release@v1
         id: create_release
         with:
@@ -34,7 +34,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.SLOTMACHINE_GITACTIONS }}
 
-      - name: Upload Android APK artifact
+      - name: UPLOAD ANDROID APK ARTIFACT
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.SLOTMACHINE_GITACTIONS }}

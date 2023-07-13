@@ -19,6 +19,7 @@ const BottomBar = forwardRef((props, ref) => {
 
   const [music, setSound] = useState();
   const [freePlayMusic, setFreePlayMusic] = useState();
+  const [coinInsertSound, setCoinInsertSound] = useState();
 
   const playSound = async () => {
     let {sound} = await Audio.Sound.createAsync(
@@ -66,6 +67,23 @@ const BottomBar = forwardRef((props, ref) => {
         }
       : undefined;
   }, [freePlayMusic]);
+
+  const playCoinInsertSound = async () => {
+    let {sound} = await Audio.Sound.createAsync(
+      require('../../assets/sounds/CoinInsert.mp3'),
+    );
+    setCoinInsertSound(sound);
+    sound.setPositionAsync(190);
+    await sound.playAsync();
+  };
+
+  useEffect(() => {
+    return coinInsertSound
+      ? () => {
+          coinInsertSound.unloadAsync();
+        }
+      : undefined;
+  }, [coinInsertSound]);
 
   useEffect(() => {
     AsyncStorage.getItem('credits').then(value => {
@@ -132,6 +150,13 @@ const BottomBar = forwardRef((props, ref) => {
     }
   };
 
+  const buyCredits= (increase) => {
+    setlastCredits(credits);
+    setCredits(credits + increase);
+    AsyncStorage.setItem('credits', (credits + increase).toString());
+    playCoinInsertSound();
+  };
+
   const autoPlayButton = autoSpin ? (
     <TouchableOpacity
       style={[
@@ -177,27 +202,21 @@ const BottomBar = forwardRef((props, ref) => {
           <TouchableOpacity
             style={styles.modalButton}
             onPress={() => {
-              setlastCredits(credits);
-              AsyncStorage.setItem('credits', (credits + 100).toString());
-              setCredits(credits + 100);
+              buyCredits(100);
             }}>
             <Text>Buy 100</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.modalButton}
             onPress={() => {
-              setlastCredits(credits);
-              AsyncStorage.setItem('credits', (credits + 500).toString());
-              setCredits(credits + 500);
+              buyCredits(500);
             }}>
             <Text>Buy 500</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.modalButton}
             onPress={() => {
-              setlastCredits(credits);
-              AsyncStorage.setItem('credits', (credits + 1000).toString());
-              setCredits(credits + 1000);
+              buyCredits(1000);
             }}>
             <Text>Buy 1000</Text>
           </TouchableOpacity>

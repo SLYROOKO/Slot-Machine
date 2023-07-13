@@ -20,11 +20,10 @@
    1. if win with a character, play the character sound
    2. jackpot sound
       1. define a jackpot
-   3. credit insert sound
 2. Refactor Info Page
    1. Try Native Flatlist instead of Library
    2. Add Description for free plays on info page
-   3. *3x multiplier during free spins*
+   3. *2x multiplier during free spins*
    4. how to get free spins
    5. Loot bot multiplier disclaimer
 3. Mute Music Button
