@@ -5,7 +5,7 @@ import {Audio} from 'expo-av';
 import {AntDesign, FontAwesome} from '@expo/vector-icons';
 import AppColors from '../../Global/AppColors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { CountUp } from 'use-count-up'
+import {CountUp} from 'use-count-up';
 
 const BottomBar = forwardRef((props, ref) => {
   const [buttonDisable, setButtonDisable] = useState(false);
@@ -17,25 +17,74 @@ const BottomBar = forwardRef((props, ref) => {
   const [autoSpin, setAutoSpin] = useState(false);
   const [lastCredits, setlastCredits] = useState(0);
 
-  const [sound, setSound] = useState();
+  const [music, setSound] = useState();
+  const [freePlayMusic, setFreePlayMusic] = useState();
+  const [coinInsertSound, setCoinInsertSound] = useState();
 
   const playSound = async () => {
     let {sound} = await Audio.Sound.createAsync(
-      require('../../assets/sounds/SpinPlay.mp3'),
+      require('../../assets/sounds/SpinPlay.mp3'), 
     );
     setSound(sound);
-
     sound.setVolumeAsync(0.1);
     await sound.playAsync();
   };
 
   useEffect(() => {
-    return sound
+    return music
       ? () => {
-          sound.unloadAsync();
+          music.unloadAsync();
         }
       : undefined;
-  }, [sound]);
+  }, [music]);
+
+  const playFreeSpinSoundHelper = async () => {
+    if (freePlayMusic) {
+      freePlayMusic.getStatusAsync().then(status => {
+        if (status.isPlaying == false) {
+          freePlayMusic.setVolumeAsync(0.1);
+          freePlayMusic.playAsync();
+        }
+      });
+    } else {
+      playFreeSpinSound();
+    }
+  };
+
+  const playFreeSpinSound = async () => {
+    let {sound} = await Audio.Sound.createAsync(
+      require('../../assets/sounds/FreePlay.mp3'),
+    );
+    setFreePlayMusic(sound);
+    sound.setVolumeAsync(0.1);
+    sound.setIsLoopingAsync(true);
+    await sound.playAsync();
+  };
+
+  useEffect(() => {
+    return freePlayMusic
+      ? () => {
+          freePlayMusic.unloadAsync();
+        }
+      : undefined;
+  }, [freePlayMusic]);
+
+  const playCoinInsertSound = async () => {
+    let {sound} = await Audio.Sound.createAsync(
+      require('../../assets/sounds/CoinInsert.mp3'),
+    );
+    setCoinInsertSound(sound);
+    sound.setPositionAsync(190);
+    await sound.playAsync();
+  };
+
+  useEffect(() => {
+    return coinInsertSound
+      ? () => {
+          coinInsertSound.unloadAsync();
+        }
+      : undefined;
+  }, [coinInsertSound]);
 
   useEffect(() => {
     AsyncStorage.getItem('credits').then(value => {
@@ -80,16 +129,18 @@ const BottomBar = forwardRef((props, ref) => {
     spinController: freeSpin => {
       handleButtonPress(freeSpin);
     },
+    stopFreePlayMusic: async () => {
+      freePlayMusic?.stopAsync();
+    },
   }));
 
   const handleButtonPress = freeSpin => {
     if (freeSpin) {
       setFreeSpins(freeSpins - 1);
-      playSound(); // swap this with the sound for free spins next branch
+      playFreeSpinSoundHelper();
       setButtonDisable(true);
       props.spinreel(freeSpin);
     }
-
     if (!freeSpin && credits >= Paylines[lineIndex]) {
       setlastCredits(credits);
       setCredits(credits - Paylines[lineIndex]);
@@ -98,6 +149,13 @@ const BottomBar = forwardRef((props, ref) => {
       setButtonDisable(true);
       props.spinreel(freeSpin);
     }
+  };
+
+  const buyCredits = increase => {
+    setlastCredits(credits);
+    setCredits(credits + increase);
+    AsyncStorage.setItem('credits', (credits + increase).toString());
+    playCoinInsertSound();
   };
 
   const autoPlayButton = autoSpin ? (
@@ -128,7 +186,7 @@ const BottomBar = forwardRef((props, ref) => {
         },
       ]}
       onPress={() => setAutoSpin(true)}>
-      <Text style={{fontWeight:'bold'}}>Auto</Text>
+      <Text style={{fontWeight: 'bold'}}>Auto</Text>
     </TouchableOpacity>
   );
 
@@ -145,27 +203,21 @@ const BottomBar = forwardRef((props, ref) => {
           <TouchableOpacity
             style={styles.modalButton}
             onPress={() => {
-              setlastCredits(credits);
-              AsyncStorage.setItem('credits', (credits + 100).toString());
-              setCredits(credits + 100);
+              buyCredits(100);
             }}>
             <Text>Buy 100</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.modalButton}
             onPress={() => {
-              setlastCredits(credits);
-              AsyncStorage.setItem('credits', (credits + 500).toString());
-              setCredits(credits + 500);
+              buyCredits(500);
             }}>
             <Text>Buy 500</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.modalButton}
             onPress={() => {
-              setlastCredits(credits);
-              AsyncStorage.setItem('credits', (credits + 1000).toString());
-              setCredits(credits + 1000);
+              buyCredits(1000);
             }}>
             <Text>Buy 1000</Text>
           </TouchableOpacity>
@@ -180,7 +232,16 @@ const BottomBar = forwardRef((props, ref) => {
         disabled={buttonDisable}
         style={styles.infoBox}
         onPress={() => setModalVisible(true)}>
-        <Text style={styles.infoText}>Credits: <CountUp isCounting={true} start={lastCredits} end={credits} duration={3} key={credits}/></Text>
+        <Text style={styles.infoText}>
+          Credits:
+          <CountUp
+            isCounting={true}
+            start={lastCredits}
+            end={credits}
+            duration={3}
+            key={credits}
+          />
+        </Text>
       </TouchableOpacity>
       <View style={styles.infoBox}>
         <TouchableOpacity

@@ -169,7 +169,7 @@ const Constants = {
     10: {5: 100, 4: 25, 3: 5, 2: 0},
     11: {5: 100, 4: 25, 3: 5, 2: 0},
     12: {5: 100, 4: 25, 3: 5, 2: 0},
-    13: {5: 100, 4: 20, 3: 5, 2: 2}, //multiplier is of total bet  so 1x for 1 line 20x for 20 lines//15 free spins loot for 3,4,5 of them //implement triple winnings during free spins
+    13: {5: 100, 4: 20, 3: 5, 2: 1}, //multiplier is of total bet  so 1x for 1 line 20x for 20 lines//15 free spins loot for 3,4,5 of them //implement triple winnings during free spins
   },
 };
 
