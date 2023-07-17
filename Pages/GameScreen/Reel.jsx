@@ -91,7 +91,7 @@ const Reel = forwardRef((props, reference) => {
   }));
 
   const setWinningLines = winningLineList => {
-    if (winningLineList.length != 3) {
+    if (winningLineList==null || winningLineList.length != 3) {
       return;
     }
     winningLineList[0] == 1

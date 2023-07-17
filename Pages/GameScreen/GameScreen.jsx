@@ -12,6 +12,7 @@ import Reel from './Reel';
 import {Entypo} from '@expo/vector-icons';
 import AppColors from '../../Global/AppColors';
 import Background from './Background';
+import {Audio} from 'expo-av';
 
 const GameScreen = ({navigation}) => {
   const reelControllers = [];
@@ -20,6 +21,44 @@ const GameScreen = ({navigation}) => {
     reelStates.push(useRef([]));
   }
   const winningPaylines = useRef([]);
+  const winningLineSoundRef1 = useRef();
+  const winningLineSoundRef2 = useRef();
+
+  const playSound1 = async () => {
+    let {sound} = await Audio.Sound.createAsync(
+      require('../../assets/sounds/Slot-Machine-Win.mp3'),
+      null,
+      handleSoundUnload,
+    );
+    sound.setVolumeAsync(0.1);
+    sound.setPositionAsync(9000); //remove pause at start of sound
+    winningLineSoundRef1.current = sound;
+    await winningLineSoundRef1.current.playAsync();
+  };
+
+  const playSound2 = async () => {
+    let {sound} = await Audio.Sound.createAsync(
+      require('../../assets/sounds/Slot-Machine-Win2.mp3'),
+      null,
+      handleSoundUnload2,
+    );
+    sound.setVolumeAsync(0.5);
+    sound.setPositionAsync(700);
+    winningLineSoundRef2.current = sound;
+    await winningLineSoundRef2.current.playAsync();
+  };
+
+  const handleSoundUnload = state => {
+    if (state.didJustFinish) {
+      winningLineSoundRef1.current.unloadAsync();
+    }
+  };
+
+  const handleSoundUnload2 = state => {
+    if (state.didJustFinish) {
+      winningLineSoundRef2.current.unloadAsync();
+    }
+  };
 
   const handleSpin = freeSpin => {
     //Make Changes for FreeSpin here TBD// visual effects// background change?
@@ -62,18 +101,17 @@ const GameScreen = ({navigation}) => {
     }
     totalPayout += calculateLootBoxPayout(reelState);
 
+    if (totalPayout >= 5 * paylineState.current) {
+      playSound1();
+    } else if (totalPayout > 0 * paylineState.current) {
+      playSound2();
+    }
+
     if (freeSpin) {
       totalPayout *= 2;
     }
     bottomBarRef.current.addCredits(totalPayout);
     highlightWinningPaylines(0);
-
-    //play sounds based on payout
-    //totalpayout>5*paylines played play smallwin sound
-    //totalpayout>10*paylines played play bigwin sound
-    //5 in a row play 5inarow sound
-    //jackpot play jackpot sound
-    //free spins won play free spins sound
   };
 
   const calculatePayout = (reelState, payLineStart, payLineEnd) => {
@@ -158,12 +196,6 @@ const GameScreen = ({navigation}) => {
       return;
     }
 
-    if (winningLineIndex > 0) {
-      reelControllers.forEach(reelController => {
-        reelController.setWinningLines([0, 0, 0]);
-      });
-    }
-
     if (winningLineIndex > winningPaylines.current.length - 1) {
       reelControllers.forEach(reelController => {
         reelController.setWinningLines([1, 1, 1]);
@@ -175,6 +207,12 @@ const GameScreen = ({navigation}) => {
         handleAutoSpin();
       }
       return;
+    }
+
+    if (winningLineIndex > 0) {
+      reelControllers.forEach(reelController => {
+        reelController.setWinningLines([0, 0, 0]);
+      });
     }
 
     let temp = Array(5)
