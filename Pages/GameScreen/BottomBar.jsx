@@ -23,7 +23,7 @@ const BottomBar = forwardRef((props, ref) => {
 
   const playSound = async () => {
     let {sound} = await Audio.Sound.createAsync(
-      require('../../assets/sounds/SpinPlay.mp3'),
+      require('../../assets/sounds/SpinPlay.mp3'), 
     );
     setSound(sound);
     sound.setVolumeAsync(0.1);
@@ -42,7 +42,7 @@ const BottomBar = forwardRef((props, ref) => {
     if (freePlayMusic) {
       freePlayMusic.getStatusAsync().then(status => {
         if (status.isPlaying == false) {
-          sound.setVolumeAsync(0.1);
+          freePlayMusic.setVolumeAsync(0.1);
           freePlayMusic.playAsync();
         }
       });
